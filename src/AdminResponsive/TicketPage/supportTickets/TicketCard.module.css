@@ -1,0 +1,309 @@
+.button {
+  border: none; /* Remove any border */
+  background-color: transparent; /* Keep background transparent */
+  padding: 0; /* No padding */
+  display: flex; /* Flex display */
+  outline: none; /* Remove outline when focused */
+  cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+.placeHolder {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--line-saperator, rgba(0, 47, 54, 0.08));
+  margin-top: 20px ;
+}
+.ticketCard {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px;
+  border: 1px solid var(--line-saperator, rgba(0, 47, 54, 0.08));
+  background: #fff;
+  padding: 20px 16px;
+}
+
+/* when we press on the button this styles will be added */
+.selected {
+  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
+} 
+
+.icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.lastModified,
+.date,
+.ticketNumber {
+  text-align: right;
+}
+
+.title {
+  text-align: right;
+  min-width: 240px;
+}
+
+.statusWrapper {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.status {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 120px;
+  padding: 8px;
+  border-radius: 8px;
+  position: relative;
+}
+.status div{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap : 10px;
+}
+
+
+
+.stausDropDown button p{
+  margin: 0;
+}
+.stausDropDown button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.stausDropDown button:first-child {
+  background: var(--very-light, #f2fbfa);
+}
+
+
+
+.pending {
+  background: var(--very-light, #f2fbfa);
+}
+
+.closed {
+  background: rgba(225, 255, 201, 1);
+}
+
+.statusIcon {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+
+@media (max-width: 991px) {
+  .ticketCard {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 993px) {
+  .topstate{
+    top:101% ;
+  }
+
+  .overflowstatus{
+    overflow-y: scroll;
+  }
+.mainContainer_product {
+
+  display: block;
+  width: 100%;
+  }
+  .mainContainer_product .left{
+    width: 100%;
+    
+  }
+  .details{
+    width: 100%;
+
+  }
+  
+  .fileds{
+    width: 100%;
+    margin: auto;
+  }
+  .highstate{
+    height: 219vh;
+  }
+  .hideicon{
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  
+
+  .topstate{
+    top:50% ;
+  }
+
+/* .details{
+
+
+
+
+  width: 40%;
+
+}} */}
+@media (min-width: 994px) {.highstate{
+  height: 100vh;
+}
+  .overflowstatus{
+    overflow: hidden;
+  }
+  .topstate{
+    top:50% ;
+  }
+ 
+.details{
+
+
+
+
+  width: 50%;
+
+}
+  .mainContainer_product {
+  
+    display: flex;
+    /* width: 100%; */
+    }
+    .filterss{
+      flex-wrap: wrap;
+    }
+   
+  }
+  
+  /* تبديل ف المنتجات  */
+
+  @media (max-width: 761px) {
+.hide{
+  display: none;
+}
+    .mainContainer_product {
+    
+      display: flex;
+      /* width: 100%; */
+      }
+      .filterss{
+        flex-wrap: wrap;
+      }
+     
+    }
+    /* تبديل ف المنتجات  */
+    @media (min-width: 762px) {
+      .hide{
+        display: flex;
+      }
+      .smallproductcardcover{
+        display: none;
+      }
+    } 
+    @media (max-width: 562px) {
+.topstate{
+  top: 131%;
+}
+
+    }
+    @media (max-width: 555px) {
+      .topstate{
+        top: 110%;
+      }
+      
+          }
+
+      
+      
+      .smallproductcardcover{
+        margin: 32px 0;
+  
+        border-Radius: 16px;
+        border: 1px solid rgba(0, 47, 54, 0.08);
+        background: #fff;
+      
+        width: 100%;
+        padding: 10px
+    ;
+    }
+
+      .smallproductcard{
+       
+        display: flex;
+      
+        align-items: center;
+        justify-content: space-around;
+       
+    ;
+    }
+    .line:before{
+      position: absolute;
+      content: "";
+      height: 1px;
+      width: 100%;
+      top: 0;
+      background-color: black;
+      border:  1px solid gray;
+    }.loader {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      border: 3px solid;
+      border-color: #FFF #FFF transparent transparent;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+    .loader::after,
+    .loader::before {
+      content: '';  
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      border: 3px solid;
+      border-color: transparent transparent #FF3D00 #FF3D00;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      box-sizing: border-box;
+      animation: rotationBack 0.5s linear infinite;
+      transform-origin: center center;
+    }
+    .loader::before {
+      width: 32px;
+      height: 32px;
+      border-color: #FFF #FFF transparent transparent;
+      animation: rotation 1.5s linear infinite;
+    }
+        
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    } 
+    @keyframes rotationBack {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+        

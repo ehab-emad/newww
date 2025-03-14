@@ -1,0 +1,270 @@
+
+const InfoItem = ({ icon, text }) => (
+  <div style={styles.infoItem}>
+    <div style={styles.infoText}>{text}</div>
+    <img loading="lazy" src={icon} alt="" style={styles.infoIcon} />
+  </div>
+);
+
+const RatingDisplay = ({ rating, totalRatings }) => (
+  <div style={styles.ratingContainer}>
+    <div style={styles.ratingWrapper}>
+      <div style={styles.ratingText}>
+        <div style={styles.ratingValue}>
+          <span>تقييم</span>
+          <span>{rating}</span>
+        </div>
+        <span>-</span>
+        <div style={styles.starsValue}>
+          <span>نجوم</span>
+          <span>{totalRatings}</span>
+        </div>
+      </div>
+      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/824645cc557fb5f157e036b1378c70fc89b31b01208dc028e055ba941957748f?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e7" alt="" style={styles.ratingIcon} />
+    </div>
+  </div>
+);
+
+const styles = {
+  renterCard: {
+    alignSelf: 'stretch',
+    borderRadius: '24px',
+    background: 'var(--White, #fff)',
+    display: 'flex',
+    marginTop: '16px',
+    width: 'auto', // Full width of the parent
+    minWidth: 'calc(100% - 32px)', // Ensure minWidth accounts for parent's padding
+    maxWidth: '100%', // Prevent exceeding parent width
+    height: 'auto',
+    flexDirection: 'column',
+    overflow: 'hidden',
+    padding: '16px',
+    flexShrink: 0, // Prevent shrinking in flex container
+
+    '@media (max-width: 991px)': {
+      maxWidth: '100%'
+    }
+  },
+  header: {
+    paddingBottom: '8px',
+    justifyContent: 'end',
+    alignItems: 'center',
+    borderBottom: '1px solid var(--line-saperator, rgba(0, 47, 54, 0.08))',
+    display: 'flex',
+    width: '100%',
+    gap: '8px',
+    fontSize: '18px',
+    color: 'var(--Text, #252422)',
+    fontWeight: '400',
+    textAlign: 'right'
+  },
+  headerIcon: {
+    aspectRatio: '1',
+    objectFit: 'contain',
+    objectPosition: 'center',
+    width: '24px'
+  },
+  profileContainer: {
+    borderRadius: '24px',
+    border: '0.5px solid var(--Stroke, rgba(0, 47, 54, 0.24))',
+    display: 'flex',
+    marginTop: '16px',
+    width: '100%',
+    flexDirection: 'column',
+    padding: '4px'
+  },
+  profileHeader: {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+    gap: '8px',
+    justifyContent: 'end'
+  },
+  verifiedBadge: {
+    alignSelf: 'stretch',
+    borderRadius: '8px',
+    background: 'var(--success-shade, #e1ffc9)',
+    padding: '4px 8px',
+    fontSize: '12px',
+    color: 'var(--success, #4a9908)',
+    fontWeight: '600',
+    textAlign: 'center',
+    margin: 'auto 0'
+  },
+  userInfo: {
+    alignSelf: 'stretch',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'end',
+    justifyContent: 'center',
+    flex: 1
+  },
+  userName: {
+    fontSize: '18px',
+    color: 'var(--Text, #252422)',
+    fontWeight: '500',
+    textAlign: 'center',
+    lineHeight: 1
+  },
+  location: {
+    color: 'var(--Paragraph, #736e67)',
+    textAlign: 'right',
+    fontSize: '14px',
+    fontWeight: '300',
+    lineHeight: 1,
+    marginTop: '4px'
+  },
+  avatar: {
+    width: '44px',
+    aspectRatio: '1',
+    objectFit: 'contain',
+    boxShadow: '0px 4px 16px 0px rgba(255, 255, 255, 0.24)'
+  },
+  divider: {
+    width: '100%',
+    height: '1px',
+    marginTop: '16px'
+  },
+  infoSection: {
+    display: 'flex',
+    marginTop: '16px',
+    width: '100%',
+    flexDirection: 'column',
+    alignItems: 'end',
+    fontSize: '14px'
+  },
+  infoItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    color: 'var(--Paragraph, #736e67)',
+    fontWeight: '400',
+    textAlign: 'right',
+    lineHeight: 2,
+    justifyContent: 'start',
+    marginTop: '8px'
+  },
+  infoText: {
+    alignSelf: 'stretch',
+    margin: 'auto 0'
+  },
+  infoIcon: {
+    aspectRatio: '1',
+    objectFit: 'contain',
+    objectPosition: 'center',
+    width: '24px',
+    alignSelf: 'stretch',
+    margin: 'auto 0'
+  },
+  ratingContainer: {
+    alignSelf: 'stretch',
+    display: 'flex',
+    marginTop: '8px',
+    width: '100%',
+    alignItems: 'center',
+    gap: '8px',
+    justifyContent: 'end'
+  },
+  ratingWrapper: {
+    alignSelf: 'stretch',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    color: 'var(--Paragraph, #736e67)',
+    fontWeight: '400',
+    textAlign: 'right',
+    lineHeight: 2,
+    justifyContent: 'start',
+    margin: 'auto 0',
+    '@media (max-width: 991px)': {
+      whiteSpace: 'initial'
+    }
+  },
+  ratingText: {
+    alignSelf: 'stretch',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '4px',
+    justifyContent: 'end',
+    margin: 'auto 0'
+  },
+  ratingValue: {
+    alignSelf: 'stretch',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '2px',
+    justifyContent: 'end',
+    margin: 'auto 0'
+  },
+  starsValue: {
+    alignSelf: 'stretch',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '2px',
+    justifyContent: 'end',
+    margin: 'auto 0'
+  },
+  ratingIcon: {
+    aspectRatio: '1',
+    objectFit: 'contain',
+    objectPosition: 'center',
+    width: '24px'
+  },
+  contactButton: {
+    alignSelf: 'stretch',
+    borderRadius: '50px',
+    border: '1px solid var(--Blue, #27989e)',
+    marginTop: '16px',
+    width: '100%',
+    padding: '16px 24px',
+    fontSize: '16px',
+    color: 'var(--Blue, #27989e)',
+    fontWeight: '500',
+    textAlign: 'center',
+    '@media (max-width: 991px)': {
+      padding: '0 20px'
+    }
+  }
+};
+
+function RenterInfo() {
+  return (
+    <div style={styles.renterCard}>
+      <div style={styles.header}>
+        <span>:بيانات المستأجر</span>
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae47a5b6ccdab1fd1cb4ebe5d95b96f94327ef2a925f54bc73b9598a467b5282?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e7" alt="" style={styles.headerIcon} />
+      </div>
+      
+      <div style={styles.profileContainer}>
+        <div style={styles.profileHeader}>
+          <div style={styles.verifiedBadge}>مستأجر موثوق</div>
+          <div style={styles.userInfo}>
+            <div style={styles.userName}>خالد محمد</div>
+            <div style={styles.location}>مكة المكرمة</div>
+          </div>
+          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/2a18a1efa1608002be194d42f3bfbf8f8234c6e03664aa6ad91723d9a41c9f6d?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e7" alt="صورة المستأجر" style={styles.avatar} />
+        </div>
+
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0a742e7554757f620346d9dd00e9750a7f28f92d794af6ef4402e33494401e3f?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e7" alt="" style={styles.divider} />
+
+        <div style={styles.infoSection}>
+          <InfoItem 
+            icon="https://cdn.builder.io/api/v1/image/assets/TEMP/3c5a9fd2f3db7427d2d9bf43fd765cb2ea36ae1a40bda25463218b9c313a9eee?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e7"
+            text="مكة المكرمة، المملكة العربية السعودية"
+          />
+          
+          <InfoItem 
+            icon="https://cdn.builder.io/api/v1/image/assets/TEMP/9ef534a7595d2763c000b9d3f588bc441a658f88c8096b140a85eb070a6f1dd4?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e7"
+            text="قام بحجز 4 منتجات من قبل"
+          />
+
+          <RatingDisplay rating={4} totalRatings={4.9} />
+        </div>
+
+        <button style={styles.contactButton}>التواصل مع المستأجر</button>
+      </div>
+    </div>
+  );
+}
+
+export default RenterInfo;

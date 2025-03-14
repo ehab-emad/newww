@@ -1,0 +1,248 @@
+.headerContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 24px;
+  margin-right: 10px;
+  margin-left: auto;
+  width: 85%;
+  align-items: center;
+  color: var(--Paragraph, #736e67);
+  text-align: center;
+  justify-content: space-between;
+  font: 400 14px Expo Arabic, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.headerContainer > :nth-child(2) {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 45%;
+}
+.headerContainer > :nth-child(1) {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 21%;
+}
+
+.headerItem {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.headerIcon {
+  width: 14px;
+  height: 14px;
+}
+
+@media (max-width: 991px) {
+  .headerContainer {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 993px) {
+  .topstate{
+    top:101% ;
+  }
+
+  .overflowstatus{
+    overflow-y: scroll;
+  }
+.mainContainer_product {
+
+  display: block;
+  width: 100%;
+  }
+  .mainContainer_product .left{
+    width: 100%;
+    
+  }
+  .details{
+    width: 100%;
+
+  }
+  
+  .fileds{
+    width: 100%;
+    margin: auto;
+  }
+  .highstate{
+    height: 219vh;
+  }
+  .hideicon{
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  
+
+  .topstate{
+    top:50% ;
+  }
+
+/* .details{
+
+
+
+
+  width: 40%;
+
+}} */}
+@media (min-width: 994px) {.highstate{
+  height: 100vh;
+}
+  .overflowstatus{
+    overflow: hidden;
+  }
+  .topstate{
+    top:50% ;
+  }
+ 
+.details{
+
+
+
+
+  width: 50%;
+
+}
+  .mainContainer_product {
+  
+    display: flex;
+    /* width: 100%; */
+    }
+    .filterss{
+      flex-wrap: wrap;
+    }
+   
+  }
+  
+  /* تبديل ف المنتجات  */
+
+  @media (max-width: 761px) {
+.hide{
+  display: none;
+}
+    .mainContainer_product {
+    
+      display: flex;
+      /* width: 100%; */
+      }
+      .filterss{
+        flex-wrap: wrap;
+      }
+     
+    }
+    /* تبديل ف المنتجات  */
+    @media (min-width: 762px) {
+      .hide{
+        display: flex;
+      }
+      .smallproductcardcover{
+        display: none;
+      }
+    } 
+    @media (max-width: 562px) {
+.topstate{
+  top: 131%;
+}
+
+    }
+    @media (max-width: 555px) {
+      .topstate{
+        top: 110%;
+      }
+      
+          }
+
+      
+      
+      .smallproductcardcover{
+        margin: 32px 0;
+  
+        border-Radius: 16px;
+        border: 1px solid rgba(0, 47, 54, 0.08);
+        background: #fff;
+      
+        width: 100%;
+        padding: 10px
+    ;
+    }
+
+      .smallproductcard{
+       
+        display: flex;
+      
+        align-items: center;
+        justify-content: space-around;
+       
+    ;
+    }
+    .line:before{
+      position: absolute;
+      content: "";
+      height: 1px;
+      width: 100%;
+      top: 0;
+      background-color: black;
+      border:  1px solid gray;
+    }.loader {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      border: 3px solid;
+      border-color: #FFF #FFF transparent transparent;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+    .loader::after,
+    .loader::before {
+      content: '';  
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      border: 3px solid;
+      border-color: transparent transparent #FF3D00 #FF3D00;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      box-sizing: border-box;
+      animation: rotationBack 0.5s linear infinite;
+      transform-origin: center center;
+    }
+    .loader::before {
+      width: 32px;
+      height: 32px;
+      border-color: #FFF #FFF transparent transparent;
+      animation: rotation 1.5s linear infinite;
+    }
+        
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    } 
+    @keyframes rotationBack {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+        

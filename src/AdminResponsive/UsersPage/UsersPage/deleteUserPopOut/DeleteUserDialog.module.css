@@ -1,0 +1,325 @@
+button {
+  cursor: pointer;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Expo Arabic, sans-serif;
+  position: fixed;
+  top : 0;
+  left : 0;
+  width : 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding: 100px 20px;
+  }
+}
+
+.dialogCard {
+  border-radius: 24px;
+  background: var(--White, #fff);
+  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.04);
+  width: 380px;
+  max-width: 100%;
+  padding: 24px;
+  text-align: right;
+}
+
+@media (max-width: 991px) {
+  .dialogCard {
+    padding: 0 20px;
+  }
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: start;
+  color: var(--Text, #252422);
+  
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+text-align: right;
+width: 100%
+}
+
+.message {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-top: 8px;
+}
+
+.username {
+  font-weight: 500;
+  color: rgba(37, 36, 34, 1);
+}
+
+.actions {
+  display: flex;
+  margin-top: 32px;
+  width: 100%;
+  align-items: start;
+  gap: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  line-height: 1;
+  justify-content: end;
+}
+
+@media (max-width: 991px) {
+  .actions {
+    white-space: initial;
+  }
+}
+
+.cancelButton {
+  align-self: stretch;
+  border-radius: 50px;
+  border: 1px solid var(--Blue, #26969c);
+  gap: 8px;
+  color: var(--Blue, #26969c);
+  font-weight: 500;
+  flex: 1;
+  padding: 12px 24px;
+}
+
+@media (max-width: 991px) {
+  .cancelButton {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+
+.confirmButton {
+  align-self: stretch;
+  border-radius: 50px;
+  background: var(--Blue, #26969c);
+  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
+  gap: 8px;
+  overflow: hidden;
+  color: var(--White, #fff);
+  font-weight: 600;
+  flex: 1;
+  flex-basis: 16px;
+  padding: 12px 16px;
+}
+
+@media (max-width: 991px) {
+  .confirmButton {
+    white-space: initial;
+  }
+}
+
+@media (max-width: 993px) {
+  .topstate{
+    top:101% ;
+  }
+
+  .overflowstatus{
+    overflow-y: scroll;
+  }
+.mainContainer_product {
+
+  display: block;
+  width: 100%;
+  }
+  .mainContainer_product .left{
+    width: 100%;
+    
+  }
+  .details{
+    width: 100%;
+
+  }
+  
+  .fileds{
+    width: 100%;
+    margin: auto;
+  }
+  .highstate{
+    height: 219vh;
+  }
+  .hideicon{
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  
+
+  .topstate{
+    top:50% ;
+  }
+
+/* .details{
+
+
+
+
+  width: 40%;
+
+}} */}
+@media (min-width: 994px) {.highstate{
+  height: 100vh;
+}
+  .overflowstatus{
+    overflow: hidden;
+  }
+  .topstate{
+    top:50% ;
+  }
+ 
+.details{
+
+
+
+
+  width: 50%;
+
+}
+  .mainContainer_product {
+  
+    display: flex;
+    /* width: 100%; */
+    }
+    .filterss{
+      flex-wrap: wrap;
+    }
+   
+  }
+  
+  /* تبديل ف المنتجات  */
+
+  @media (max-width: 761px) {
+.hide{
+  display: none;
+}
+    .mainContainer_product {
+    
+      display: flex;
+      /* width: 100%; */
+      }
+      .filterss{
+        flex-wrap: wrap;
+      }
+     
+    }
+    /* تبديل ف المنتجات  */
+    @media (min-width: 762px) {
+      .hide{
+        display: flex;
+      }
+      .smallproductcardcover{
+        display: none;
+      }
+    } 
+    @media (max-width: 562px) {
+.topstate{
+  top: 131%;
+}
+
+    }
+    @media (max-width: 555px) {
+      .topstate{
+        top: 110%;
+      }
+      
+          }
+
+      
+      
+      .smallproductcardcover{
+        margin: 32px 0;
+  
+        border-Radius: 16px;
+        border: 1px solid rgba(0, 47, 54, 0.08);
+        background: #fff;
+      
+        width: 100%;
+        padding: 10px
+    ;
+    }
+
+      .smallproductcard{
+       
+        display: flex;
+      
+        align-items: center;
+        justify-content: space-around;
+       
+    ;
+    }
+    .line:before{
+      position: absolute;
+      content: "";
+      height: 1px;
+      width: 100%;
+      top: 0;
+      background-color: black;
+      border:  1px solid gray;
+    }.loader {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      border: 3px solid;
+      border-color: #FFF #FFF transparent transparent;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+    .loader::after,
+    .loader::before {
+      content: '';  
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      border: 3px solid;
+      border-color: transparent transparent #FF3D00 #FF3D00;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      box-sizing: border-box;
+      animation: rotationBack 0.5s linear infinite;
+      transform-origin: center center;
+    }
+    .loader::before {
+      width: 32px;
+      height: 32px;
+      border-color: #FFF #FFF transparent transparent;
+      animation: rotation 1.5s linear infinite;
+    }
+        
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    } 
+    @keyframes rotationBack {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+        

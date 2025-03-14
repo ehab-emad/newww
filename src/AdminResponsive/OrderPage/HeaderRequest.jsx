@@ -1,0 +1,78 @@
+import * as React from "react";
+import '../../App.css'
+const styles = {
+  ordersfilter: {
+    justifyContent: "space-between",
+    alignSelf: "stretch",
+    gap: "16px",
+    color: "var(--Paragraph, #736e67)",
+    textAlign: "right",
+    flexWrap: "nowrap",
+    padding: "8px 16px",
+    font: "400 14px Expo Arabic, -apple-system, Roboto, Helvetica, sans-serif"
+  },
+  img: {
+    aspectRatio: "1",
+    objectFit: "contain",
+    objectPosition: "center",
+    width: "20px",
+    margin: "auto 0",
+    opacity: 0 // Make the image fully transparent
+
+  },
+  تاريخالتعديل: {
+    width: "108px",
+    textAlign: "center",
+
+  },
+  مدةالتأجير: {
+    width: "108px",
+    textAlign: "center",
+
+  },
+  المبلغالمدفوع: {
+    width: "108px",
+    textAlign: "center",
+
+  },
+  حالةالطلب: {
+    width: "124px",
+    textAlign: "center",
+
+  },
+  اسمالعميل: {
+    width: "132px",
+    textAlign: "center",
+  },
+  بياناتالطلب: {
+    width: "240px",
+    textAlign: "right",
+  },
+  رقمالطلب: {
+    width: "80px",
+    textAlign: "center"
+
+  }
+};
+
+function HeaderRequest() {
+  return (
+    <div style={styles.ordersfilter} className="hide">
+      <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/ba46c6258edc43c97407c644dd100193a11504a5317d3de870704110203e9b84?placeholderIfAbsent=true&apiKey=d450998b662b4d7f9d8aea2e6e480818"
+        style={styles.img}
+        alt=""
+      />
+      <div style={styles.تاريخالتعديل}>تاريخ التعديل</div>
+      <div style={styles.مدةالتأجير}>مدة التأجير</div>
+      <div style={styles.المبلغالمدفوع}>المبلغ المدفوع</div>
+      <div style={styles.حالةالطلب}>حالة الطلب</div>
+      <div style={styles.اسمالعميل}>اسم العميل</div>
+      <div style={styles.بياناتالطلب}>بيانات الطلب</div>
+      <div style={styles.رقمالطلب}>رقم الطلب</div>
+    </div>
+  );
+}
+
+export default HeaderRequest;

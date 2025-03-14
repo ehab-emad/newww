@@ -1,0 +1,370 @@
+button {
+  background-color: transparent;
+  border: none;
+  width: fit-content;
+  padding: 0;
+  cursor: pointer;
+}
+
+button img:hover{
+  cursor: pointer;
+}
+
+.layout {
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+.userCard {
+    border-radius: 24px;
+    background: var(--BG-gray, #f6f5f5);
+    box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    font-family: Expo Arabic, sans-serif;
+    justify-content: start;
+    padding: 24px 24px 24px 18px;
+    /* new style */
+    position: relative;
+    width: 75%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .header {
+    padding: 0 0 8px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--line-saperator, rgba(0, 47, 54, 0.08));
+    display: flex;
+    width: 100%;
+    font-size: 24px;
+    color: var(--Text, #252422);
+    font-weight: 600;
+    text-align: right;
+    flex-wrap: wrap;
+  }
+  
+  .headerIcon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 32px;
+    align-self: stretch;
+    margin: auto 0;
+  }
+  
+  .headerTitle {
+    align-self: stretch;
+    flex: 1;
+    margin: auto 0;
+  }
+  
+  .contentWrapper {
+    display: flex;
+    margin-top: 16px;
+    width: 100%;
+    gap: 16px;
+    justify-content: space-between;
+    /* new style */
+    /* flex-wrap: nowrap; */
+  }
+  
+  .actionButtons {
+    justify-content: end;
+    align-items: start;
+    border-radius: 24px;
+    background: var(--White, #fff);
+    box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.04);
+    display: flex;
+    margin-top: 16px;
+    gap: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1;
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+  
+  .contactButton {
+    align-self: stretch;
+    border-radius: 50px;
+    border: 1px solid var(--Blue, #26969c);
+    min-width: 240px;
+    gap: 8px;
+    color: var(--Blue, #26969c);
+    flex: 1;
+    padding: 16px 24px;
+  }
+  
+  .rejectButton {
+    align-self: stretch;
+    border-radius: 50px;
+    background: var(--error-shade, #fae4e4);
+    min-width: 240px;
+    gap: 8px;
+    color: rgba(214, 27, 27, 1);
+    font-weight: 400;
+    flex: 1;
+    padding: 16px 24px;
+  }
+  
+  .approveButton {
+    align-self: stretch;
+    border-radius: 50px;
+    background: var(--Blue, #27989e);
+    box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
+    min-width: 240px;
+    gap: 8px;
+    color: rgba(255, 255, 255, 1);
+    flex: 1;
+    padding: 16px 24px;
+  }
+  .approveButtondiabled {
+    align-self: stretch;
+    border-radius: 50px;
+    background: var(--Blue, #c9c9c996);
+    box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
+    min-width: 240px;
+    gap: 8px;
+    color: rgb(80, 80, 80);
+    flex: 1;
+    padding: 16px 24px;
+    border: none;
+    outline: none;
+  }
+  @media (min-width: 992px) {
+    .contentWrapper{
+      flex-wrap: nowrap;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .userCard {
+      padding-right: 20px;
+    }
+    .contentWrapper{
+      flex-wrap: wrap;
+    }
+    .header {
+      max-width: 100%;
+    }
+    .headerTitle {
+      max-width: 100%;
+    }
+    .actionButtons {
+      max-width: 100%;
+    }
+    .contactButton,
+    .rejectButton,
+    .approveButton {
+      padding: 8px 20px;
+    }
+  }
+  @media (max-width: 993px) {
+    .topstate{
+      top:101% ;
+    }
+  
+    .overflowstatus{
+      overflow-y: scroll;
+    }
+  .mainContainer_product {
+  
+    display: block;
+    width: 100%;
+    }
+    .mainContainer_product .left{
+      width: 100%;
+      
+    }
+    .details{
+      width: 100%;
+  
+    }
+    
+    .fileds{
+      width: 100%;
+      margin: auto;
+    }
+    .highstate{
+      height: 219vh;
+    }
+    .hideicon{
+      display: none;
+    }
+  }
+  
+  @media (min-width: 901px) {
+    
+  
+    .topstate{
+      top:50% ;
+    }
+  
+  /* .details{
+  
+  
+  
+  
+    width: 40%;
+  
+  }} */}
+  @media (min-width: 994px) {.highstate{
+    height: 100vh;
+  }
+    .overflowstatus{
+      overflow: hidden;
+    }
+    .topstate{
+      top:50% ;
+    }
+   
+  .details{
+  
+  
+  
+  
+    width: 50%;
+  
+  }
+    .mainContainer_product {
+    
+      display: flex;
+      /* width: 100%; */
+      }
+      .filterss{
+        flex-wrap: wrap;
+      }
+     
+    }
+    
+    /* تبديل ف المنتجات  */
+  
+    @media (max-width: 761px) {
+  .hide{
+    display: none;
+  }
+      .mainContainer_product {
+      
+        display: flex;
+        /* width: 100%; */
+        }
+        .filterss{
+          flex-wrap: wrap;
+        }
+       
+      }
+      /* تبديل ف المنتجات  */
+      @media (min-width: 762px) {
+        .hide{
+          display: flex;
+        }
+        .smallproductcardcover{
+          display: none;
+        }
+      } 
+      @media (max-width: 562px) {
+  .topstate{
+    top: 131%;
+  }
+  
+      }
+      @media (max-width: 555px) {
+        .topstate{
+          top: 110%;
+        }
+        
+            }
+  
+        
+        
+        .smallproductcardcover{
+          margin: 32px 0;
+    
+          border-Radius: 16px;
+          border: 1px solid rgba(0, 47, 54, 0.08);
+          background: #fff;
+        
+          width: 100%;
+          padding: 10px
+      ;
+      }
+  
+        .smallproductcard{
+         
+          display: flex;
+        
+          align-items: center;
+          justify-content: space-around;
+         
+      ;
+      }
+      .line:before{
+        position: absolute;
+        content: "";
+        height: 1px;
+        width: 100%;
+        top: 0;
+        background-color: black;
+        border:  1px solid gray;
+      }.loader {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        border: 3px solid;
+        border-color: #FFF #FFF transparent transparent;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+      }
+      .loader::after,
+      .loader::before {
+        content: '';  
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border: 3px solid;
+        border-color: transparent transparent #FF3D00 #FF3D00;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        animation: rotationBack 0.5s linear infinite;
+        transform-origin: center center;
+      }
+      .loader::before {
+        width: 32px;
+        height: 32px;
+        border-color: #FFF #FFF transparent transparent;
+        animation: rotation 1.5s linear infinite;
+      }
+          
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      } 
+      @keyframes rotationBack {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(-360deg);
+        }
+      }
+          

@@ -47,7 +47,7 @@ export const TicketCard = ({
   }
   const dropstyles = {
     statusDropDownStyle: {
-      // position: "absolute",
+      position: "absolute",
       top: "100%",
       right: "0",
       backgroundColor: "#ffffff",
@@ -55,7 +55,7 @@ export const TicketCard = ({
       borderRadius: "8px",
       padding: "10px",
       boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-      minWidth: "150px",
+      minWidth: "120px",
       textAlign: "center",
       zIndex: 1000,
     },
@@ -211,8 +211,8 @@ export const TicketCard = ({
 
         </div>
       </div>
-      <div style={styless.filterItem}>{formatTimestamp(createdAt)} </div>
-      <div style={styless.filterItem}>{formatTimestamp(updatedAt)}</div>
+      <div style={styless.filterItem}>{formatTimestamp(createdAt)  ||"empty"}</div>
+      <div style={styless.filterItem}>{formatTimestamp(updatedAt) ||"empty"}</div>
       {/* this is the button where the user will press to see the card details */}
       <button className={styles.button} onClick={changeDetailsVisability}>
         <img
@@ -237,7 +237,7 @@ export const TicketCard = ({
          
           
 <div style={{maxWidth:"125px",minWidth:"100px"}} onClick={changeVisability}>
-        <div >
+        <div  style={{position:"relative"}}>
         <div >
           {active ===false ?
                <img style={{width:"90%",height: '100%'}}
@@ -255,7 +255,7 @@ export const TicketCard = ({
         }
        
            
-          </div>
+          </div >
           {/* this is the button where the user will press to change the statue */}
           <button className={styles.button} >
        

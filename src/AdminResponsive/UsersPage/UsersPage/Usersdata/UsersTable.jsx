@@ -69,7 +69,7 @@ export const UsersTable = ({data,activeFilterText}) => {
       } else if (activeFilterText === 'العضويات الموثقة') {
         return user.status==="approved";
       } else if (activeFilterText === 'العضويات المرفوضة / الموقوفة') {
-        return user.status === "suspended" || user.status === "reject";
+        return user.status === "suspended" || user.status === "rejected";
       }
       return true; // Return all if none of the conditions match
     });
@@ -101,21 +101,21 @@ const dispatch=useDispatch()
 
       if (!user) return users;
   
-      const sellerData = { ...user, status:'reject',active:false}; 
+      const sellerData = { ...user, status:'rejected',active:false}; 
         
-      await dispatch(UpdatesellerAdmin({id:id,sellerData}))
+      await dispatch(UpdatesellerAdmin({id:id.id,sellerData}))
      await dispatch(Allsellers())
       console.log(sellerData)
   
     }
     else{
-      const user = data.find(user => user.id === id.customerid); 
+      const user = data.find(user => user.id === id.id); 
 
       if (!user) return users;
   
-      const customerData = { ...user, status:'reject',active:false}; 
+      const customerData = { ...user, status:'rejected',active:false}; 
         
-    await  dispatch(UpdatecustomerAdmin({id:id.customerid,customerData}))
+    await  dispatch(UpdatecustomerAdmin({id:id.id,customerData}))
     await     dispatch(AllCustomers())
       console.log(customerData)
   

@@ -53,7 +53,7 @@ const OrderSumaryStyle = {
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
-        padding: '12px',
+        paddingLeft: '12px',
         borderRadius: '5px',
         overflow: 'hidden', // Prevents overflow
         gap: '16px'

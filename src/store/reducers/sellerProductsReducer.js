@@ -84,6 +84,10 @@ export const UpdatesellerAdmin = createAsyncThunk(
             toast.success("تم توثيق المالك ")
 
             }
+             else if(sellerData.status==="rejected"){
+                toast.warn("تم رفض  المالك ")
+    
+                }
             else{
                 toast.warn("تم الغاء تفعيل هذا المالك ")
             }

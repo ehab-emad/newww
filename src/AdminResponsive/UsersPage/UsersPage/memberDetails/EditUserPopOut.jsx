@@ -41,11 +41,14 @@ const EditUserPopOut = ({close,user, Changeactive, toggleUserVerified , toggleUs
       </div>
       {/* contitional rendering */}
       {
-        user.status === "approved" ||user.hasOwnProperty("name")
+        user.status === "approved" ||user.hasOwnProperty("name") ||       user.status === "suspended" 
         ? (
             <AccountActivation Changeactive={Changeactive} user = {user} toggleUserVerified = {toggleUserVerified}  close={close}/>
         )
-        : (
+        : 
+        user.status === "pending" ||user.hasOwnProperty("name") ?
+        
+        (
           <div className={styles.actionButtons}>
             <button className={styles.rejectButton } onClick={() =>  {
               toggleUserStatus(user) 
@@ -55,7 +58,7 @@ const EditUserPopOut = ({close,user, Changeactive, toggleUserVerified , toggleUs
               close()
             } }>توثيق العضوية</button>
           </div>
-          )
+          ):<div></div>
        }
       </div>
     </div>

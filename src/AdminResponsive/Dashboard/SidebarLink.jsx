@@ -12,7 +12,7 @@ function SidebarLink({ text, icon,setCurrentPage ,isActive, setIsOpen }) {
             alignItems: 'center',
             gap: '4px',
             justifyContent: 'flex-end',
-            padding: '16px',
+            padding: '14px 0',
             marginTop: '0px',
             cursor: 'pointer',
             outline: 'none', // Ensure focus outline is visible

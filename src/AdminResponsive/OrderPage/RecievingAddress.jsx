@@ -22,6 +22,7 @@ const ReceivingAddress = ({orderData}) => {
       display: 'flex',
       width: ' auto',
       flexDirection: 'column',
+      height:"184px",
       overflow: 'hidden',
       fontFamily: 'Expo Arabic, sans-serif',
       justifyContent: 'start',

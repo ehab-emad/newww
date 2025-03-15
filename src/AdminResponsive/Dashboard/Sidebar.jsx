@@ -45,7 +45,7 @@ function Sidebar({setCurrentPage,setIsOpen, currentPage , Isopen , openClose }) 
       borderRadius: '0px',
       background: 'var(--Dark, #09262a)',
       display: 'flex',
-      maxWidth: '200px',
+      maxWidth: '263px',
       flexDirection: 'column',
       overflow: 'hidden',
       justifyContent: 'start',
@@ -100,7 +100,7 @@ function Sidebar({setCurrentPage,setIsOpen, currentPage , Isopen , openClose }) 
       gap: '8px',
       color: 'rgba(166, 177, 178, 1)',
       justifyContent: 'end',
-      padding: '18px 16px',
+      padding: '18px 0px',
       font: '400 16px Expo Arabic, -apple-system, Roboto, Helvetica, sans-serif',
       cursor: 'pointer',
       border: 'none',
@@ -249,7 +249,7 @@ function Sidebar({setCurrentPage,setIsOpen, currentPage , Isopen , openClose }) 
             aspectRatio: '1',
             objectFit: 'contain',
             width: '20px',
-            margin: 'auto 0'
+            // margin: 'auto 0'
           }}
           loading="lazy"
         />

@@ -1121,7 +1121,10 @@ export const setOrdersStatus = async (sellerid, orderid, newStatus) => {
 ///
 
 export const updateSellerDetails = async (id, sellerData) => {
+    console.log(sellerData)
+    console.log(id)
     try {
+        console.log(sellerData)
         // Query to find the specific order
         const setsellersQuery = query(
             collection(firestore, 'sellers'),

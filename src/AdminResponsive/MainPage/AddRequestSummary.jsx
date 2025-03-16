@@ -96,7 +96,7 @@ const styles = {
         height: '100%',
         overflow : 'hidden',
         flexWrap:"wrap",
-
+// flexDirection:"col"
         width: '100%', // Full width of the parent
         flexShrink: 0, // Prevent shrinking in flex container  
         minWidth: '0', // Ensure no minimum width constraints
@@ -467,6 +467,7 @@ const uploadImageStyles = {
 };
 const addressStyles = {
   addresssection: {
+    minWidth: '100%',
     alignSelf: 'stretch',
     borderRadius: '24px',
     background: 'var(--White, #fff)',
@@ -640,15 +641,15 @@ const addressData = {
 
 const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById ,product}) => {
 
-  const handleapproved = ()=> {
-    addOrderToAnotherList()
+  const handleapproved = (id)=> {
+    addOrderToAnotherList(id)
     onReviewClick()
 
   
     };
     const keys = Object.keys(product.features);
-    const handledelete = ()=> {
-      deleteOrderById()
+    const handledelete = (id)=> {
+      deleteOrderById(id)
       onReviewClick()
     
       };
@@ -684,7 +685,7 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
               <div style={styles.orderTitle}>بيانات الطلب</div>
         </div>
          
-        <div style={styles.container}>
+        <div style={styles.container} className='flexReverse'>
               <div style={styles.left} className='details'>
               <div style={AddProductHeader.containerprices}>
 
@@ -776,7 +777,7 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                                 style={{ ...styles.actionButton, ...styles.rejectButton }}
                                 tabIndex="0"
                                 role="button"
-                                onClick={handledelete}
+                                onClick={handledelete(product)}
                             >
                                 رفض الطلب
                             </button>
@@ -784,7 +785,7 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                                 style={{ ...styles.actionButton, ...styles.approveButton }}
                                 tabIndex="0"
                                 role="button"
-                                onClick={handleapproved}
+                                onClick={handleapproved(product)}
                             >
                                 الموافقة على الطلب
                             </button>

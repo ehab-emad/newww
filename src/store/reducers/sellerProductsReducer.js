@@ -23,6 +23,7 @@ import {
     getcustomerById,
     changeTicketstatus,
     updateeticket,
+    updateProduct,
     // Import the new function
 
 
@@ -115,6 +116,27 @@ export const UpdatecustomerAdmin = createAsyncThunk(
                 }
                
             return newDataCustomer; // Return the data directly
+        } catch (error) {
+            console.error('Error changing customer status:', error);
+            return rejectWithValue(error.message || 'Failed to change order status');
+        }
+    }
+);
+export const UpdateProductAdmin = createAsyncThunk(
+    'order/UpdateProductAdmin',
+    async ({ id,  productData }, { rejectWithValue }) => {
+        try {
+            const newDataProduct = await updateProduct(id,productData);
+            console.log('New status is', productData);
+            if(productData.status==="approved"){
+                toast.success("تم قبول المنتج")
+    
+                }
+                else{
+                    toast.warn("تم رفض المنتج  ")
+                }
+               
+            return newDataProduct; // Return the data directly
         } catch (error) {
             console.error('Error changing customer status:', error);
             return rejectWithValue(error.message || 'Failed to change order status');
@@ -254,14 +276,14 @@ export const DeletecustomerAdmin = createAsyncThunk(
 );
 export const PublishedRentedTrue = createAsyncThunk(
     'products/PublishedRentedTrue',
-    async (sellerid,{ rejectWithValue }) => {
+    async () => {
         try {
-            const published_rentedtrue = await getPublichedRentedTrue(sellerid);
+            const published_rentedtrue = await getPublichedRentedTrue();
             console.log('[published rented true  are ', published_rentedtrue);
             return { published_rentedtrue }; // Return the data directly
         } catch (error) {
             console.error('Error published rented ture prducts:', error);
-            return rejectWithValue(error.message);
+            // return rejectWithValue(error.message);
         }
     }
 );

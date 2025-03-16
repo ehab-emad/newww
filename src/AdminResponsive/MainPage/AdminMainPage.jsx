@@ -8,7 +8,7 @@ const AdminMainPage = () => {
   return (
     <>
       <MonthlyStatusComponent />
-      <NewOrderAdmin />
+      {/* <NewOrderAdmin /> */}
       <AddProductRequest />
       <NewMembersCard />
     </>

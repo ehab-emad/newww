@@ -2,7 +2,7 @@ import  { useState,useEffect } from 'react';
 import AddRequestSummary from './AddRequestSummary';
 import { useDispatch, useSelector } from 'react-redux';
 // import { getNewOrders } from '../../../../trenttest/reducers/sellerOrdersReducer';
-import { PendingProductsAdmin } from '../../store/reducers/sellerProductsReducer';
+import { PendingProductsAdmin, PublishedRentedTrue, UpdateProductAdmin } from '../../store/reducers/sellerProductsReducer';
 
 const OrderStatusStyles = {
     serviceUpcomingAppointments: {
@@ -322,6 +322,7 @@ const AddProductRequest = () => {
 
   const dispatch = useDispatch();
   const {  products_pendingAdmin } = useSelector((state) => state.seller_products);
+  const {  published_rentedtrue } = useSelector((state) => state.seller_products);
  
 
 
@@ -345,7 +346,7 @@ const AddProductRequest = () => {
 
   // Fetch data on component mount
   useEffect(() => {
-
+    
     dispatch(PendingProductsAdmin());
      
   }, []);
@@ -354,17 +355,33 @@ const AddProductRequest = () => {
 
   const [AddRequest, setAddRequest] = useState(products_pendingAdmin);
     // Function to delete an order by id
-    const deleteOrderById = () => {
-        setAddRequest((prevOrders) => prevOrders.filter(order => order.id !== ActiveOrder));
+    const deleteOrderById = async(id) => {
+      const user = products_pendingAdmin.find(user => user.id === id.id); 
+    
+      if (!user) return products_pendingAdmin;
+  
+      const productData = { ...user, status:'rejected'}; 
+        
+      await dispatch(UpdateProductAdmin({id:id.id,productData}))
+     await     dispatch(PendingProductsAdmin());
+
+  
+
+
   };
 
   // Function to add an order to another list
-  const addOrderToAnotherList = () => {
-      const orderToAdd = AddRequest.find(order => order.id === ActiveOrder);
-      if (orderToAdd) {
-          setAnotherList((prevList) => [...prevList, orderToAdd]);
-          deleteOrderById(); // Optionally remove from newOrders after adding
-      }
+  const addOrderToAnotherList = async(id) => {
+     const user = products_pendingAdmin.find(user => user.id === id.id); 
+    
+          if (!user) return products_pendingAdmin;
+      
+          const productData = { ...user, status:'approved'}; 
+            
+          await dispatch(UpdateProductAdmin({id:id.id,productData}))
+         await     dispatch(PendingProductsAdmin());
+
+      
   };
 
   const onReviewClick = (request) => {

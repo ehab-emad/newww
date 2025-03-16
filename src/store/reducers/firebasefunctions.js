@@ -662,12 +662,12 @@ export const getPublichedProductsTrue = async () => {
 };
 
 //////
-export const getPublichedRentedTrue = async (sellerid) => {
+export const getPublichedRentedTrue = async () => {
     try {
         const rentedPublishedTrueQuery = query(
             collection(firestore, 'products'),
-            where('sellerid', '==', sellerid),
-            orderBy('createdAt', 'desc'),
+            // where('sellerid', '==', sellerid),
+            // orderBy('createdAt', 'desc'),
             where('published', '==', true),
             where('rented', '==', true)
         );
@@ -1204,6 +1204,59 @@ export const updateSellerDetails = async (id, sellerData) => {
 
             console.log(`customer ${id} status updated to ${customerData}`);
             return { success: true, message: `customer status updated to ${customerData}` };
+        } else {
+            console.log(`customer ${id} not found or not active`);
+            return { success: false, message: `Order ${id} not found or not active` };
+        }
+    } catch (error) {
+        console.error('Error updating order status:', error);
+        throw error;
+    }
+    // try {
+    //   // Reference the seller document by its ID
+    //   const sellerRef = doc(firestore, 'sellers', id);
+  
+    //   // Update the document with the new details
+    //   await updateDoc(sellerRef, {
+    //     ...sellerData, // Spread the sellerData object to update multiple fields
+    //     updatedAt: new Date().toISOString(), // Add a timestamp for the update
+    //   });
+  
+    //   console.log('Seller details updated successfully!');
+    //   return true; // Indicate success
+    // } catch (error) {
+    //   console.error('Error updating seller details:', error);
+    //   throw error; // Re-throw the error for handling in the calling code
+    // }
+  };
+  export const updateProduct = async (id, productData) => {
+    try {
+        // Query to find the specific order
+        const setcustomersQuery = query(
+            collection(firestore, 'products'),
+            where('id', '==', id),
+            // where('status', '==', 'pending')
+        );
+
+        const setcustomerSnapshot = await getDocs(setcustomersQuery);
+        const rentedcustomer = setcustomerSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+
+        // Find the specific order by orderid
+        const customerToUpdate = rentedcustomer.find(order => order.id === id);
+
+        if (customerToUpdate) {
+            // Update the order status
+            // console.log(sellerData)
+            const orderRef = doc(firestore, 'customer', customerToUpdate.id);
+            await updateDoc(orderRef, {
+               ...productData
+            });
+
+            console.log(`customer ${id} status updated to ${productData}`);
+            return { success: true, message: `customer status updated to ${productData}` };
         } else {
             console.log(`customer ${id} not found or not active`);
             return { success: false, message: `Order ${id} not found or not active` };

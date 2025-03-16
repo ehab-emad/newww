@@ -226,7 +226,7 @@ const stylesProductCard = {
       aspectRatio: '1',
       objectFit: 'contain',
       objectPosition: 'center',
-      width: '64px',
+      width: '40px',
       margin: 'auto 0',
       borderRadius: '8px',
     },
@@ -651,7 +651,7 @@ const handladdproduct=  () =>{
   <img src={'https://cdn.builder.io/api/v1/image/assets/TEMP/b96d1ed5b69bb8dcca96ca72efe39f483bf3d84f91f02fd737257c912709c862?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e'} onClick={() => toggleProduct(product.id)} style={{width : '20px' , height : '20px', transform:  "rotate(180deg)" }}/>
 
 
-<div  style={{gap:"10px"}} className={maindiv.actionButtons}>
+<div  style={{gap:"13px"}} className={maindiv.actionButtons}>
 {buttonicons.map((icon, index) => (
 <img
 key={index}
@@ -675,9 +675,23 @@ onClick={() => handleIconClick(index,product.id)}
    style={stylesProductCard.statusIcon}
  /> */}
 
+<div style={{width:"23%",margin:"9px "}}>
+        {!product.rented ?
+   <div style={{width:"100%"}}>
+    <img style={{width:"100%"}} src='https://res.cloudinary.com/dbztvm0io/image/upload/v1741538282/%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA_-_%D9%85%D8%AA%D8%A7%D8%AD_%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1_mym7te.png' alt=' available'/>
+    </div>
+   :
+   <div style={{width:"100%"}}>
+    <img style={{width:"100%"}} src='https://res.cloudinary.com/dbztvm0io/image/upload/v1741538281/%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA_-_%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC_%D9%85%D8%A4%D8%AC%D8%B1_lprfyi.png' alt='not available'/>
+    </div>
+          
+        }
+    
+   
+         
+       </div>
 
-
-<div style={stylesProductCard.productTitle}>{product.name || "empty"}
+<div  style={stylesProductCard.productTitle}>{product.name || "empty"}
 
 
   

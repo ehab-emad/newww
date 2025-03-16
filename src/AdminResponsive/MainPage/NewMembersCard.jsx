@@ -114,9 +114,9 @@ const allpending=[...pending_sellers,...pending_customer]
 
       if (!user) return allpending;
   
-      const sellerData = { ...user, status:'reject',active:false}; 
+      const sellerData = { ...user, status:'rejected',active:false}; 
         
-      await dispatch(UpdatesellerAdmin({id:id,sellerData}))
+      await dispatch(UpdatesellerAdmin({id:id.id,sellerData}))
      await dispatch(Allsellers())
       console.log(sellerData)
   
@@ -126,9 +126,9 @@ const allpending=[...pending_sellers,...pending_customer]
 
       if (!user) return allpending;
   
-      const customerData = { ...user, status:'reject',active:false}; 
+      const customerData = { ...user, status:'rejected',active:false}; 
         
-    await  dispatch(UpdatecustomerAdmin({id:id.customerid,customerData}))
+    await  dispatch(UpdatecustomerAdmin({id:id.id,customerData}))
     await     dispatch(AllCustomers())
       console.log(customerData)
   

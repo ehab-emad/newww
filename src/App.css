@@ -50,6 +50,9 @@ ul{
   .overflowstatus{
     overflow-y: scroll;
   }
+  .flexReverse{
+    flex-direction: column-reverse;
+  }
 .mainContainer_product {
 
   display: block;
@@ -91,7 +94,9 @@ ul{
   width: 40%;
 
 }} */}
-@media (min-width: 994px) {.highstate{
+@media (min-width: 994px) {
+  
+  .highstate{
   height: 100vh;
 }
   .overflowstatus{
@@ -101,7 +106,9 @@ ul{
   .topstate{
     top:60% ;
   }
- 
+ .flexReverse{
+  flex-direction: none;
+}
 .details{
 
 

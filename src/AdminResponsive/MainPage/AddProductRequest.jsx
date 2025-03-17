@@ -337,7 +337,7 @@ const styles = {
 
     const productData = { ...user, status: 'rejected' }; 
     await dispatch(UpdateProductAdmin({ id: id.id, productData }));
-    dispatch(PendingProductsAdmin());
+    await dispatch(PendingProductsAdmin());
   };
 
   const addOrderToAnotherList = async (id) => {
@@ -346,7 +346,7 @@ const styles = {
 
     const productData = { ...user, status: 'approved' }; 
     await dispatch(UpdateProductAdmin({ id: id.id, productData }));
-    dispatch(PendingProductsAdmin());
+    await dispatch(PendingProductsAdmin());
   };
 
   const onReviewClick = (e) => {

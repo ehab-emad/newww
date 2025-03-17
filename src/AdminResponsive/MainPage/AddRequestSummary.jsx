@@ -643,14 +643,14 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
 
   const handleapproved = (id)=> {
     addOrderToAnotherList(id)
-    // onReviewClick()
+    onReviewClick()
 
   
     };
     const keys = product.features? Object.keys(product.features):null;
     const handledelete = (id)=> {
       deleteOrderById(id)
-      // onReviewClick()
+      onReviewClick()
     
       };
 

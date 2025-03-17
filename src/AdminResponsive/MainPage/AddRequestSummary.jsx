@@ -643,14 +643,14 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
 
   const handleapproved = (id)=> {
     addOrderToAnotherList(id)
-    onReviewClick()
+    // onReviewClick()
 
   
     };
-    const keys = Object.keys(product.features);
+    const keys = product.features? Object.keys(product.features):null;
     const handledelete = (id)=> {
       deleteOrderById(id)
-      onReviewClick()
+      // onReviewClick()
     
       };
 
@@ -751,13 +751,14 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                         <div style={addressStyles.addressTitle}>{addressData.addressTitle}</div>
                       </div>
                       <div style={addressStyles.cityRow}>
-                        <div style={addressStyles.cityName}>              {product.address.city || "empty"}
+                        <div style={addressStyles.cityName}>          {product.address? (product.address.city || "empty"):"null"}
+                          
                         </div>
                         <div style={addressStyles.cityLabel}>{addressData.city.label}</div>
                       </div>
                       <div style={addressStyles.detailsRow}>
                         <div style={addressStyles.detailsText}>
-                        {product.address.address || "empty"}
+                        {product.address? (product.address.address || "empty"):null}
                         </div>
                         <div style={addressStyles.detailsLabel}>{addressData.details.label}</div>
                       </div>
@@ -777,7 +778,7 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                                 style={{ ...styles.actionButton, ...styles.rejectButton }}
                                 tabIndex="0"
                                 role="button"
-                                onClick={handledelete(product)}
+                                onClick={()=>handledelete(product)}
                             >
                                 رفض الطلب
                             </button>
@@ -785,7 +786,7 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                                 style={{ ...styles.actionButton, ...styles.approveButton }}
                                 tabIndex="0"
                                 role="button"
-                                onClick={handleapproved(product)}
+                                onClick={()=>handleapproved(product)}
                             >
                                 الموافقة على الطلب
                             </button>
@@ -819,7 +820,7 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                                
                                    <TextBoxField 
                                         label="المدينة" 
-                                        placeholder= {product.address.city}
+                                        placeholder=  {product.address? (product.address.city || "empty"):"null"}
                                     />
                                          <TextBoxField 
                                         label="التصنيف" 

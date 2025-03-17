@@ -125,9 +125,10 @@ export const UpdatecustomerAdmin = createAsyncThunk(
 export const UpdateProductAdmin = createAsyncThunk(
     'order/UpdateProductAdmin',
     async ({ id,  productData }, { rejectWithValue }) => {
+        console.log('New status is', productData);
+
         try {
-            const newDataProduct = await updateProduct(id,productData);
-            console.log('New status is', productData);
+            const Update_ProductAdmin = await updateProduct(id,productData);
             if(productData.status==="approved"){
                 toast.success("تم قبول المنتج")
     
@@ -136,7 +137,7 @@ export const UpdateProductAdmin = createAsyncThunk(
                     toast.warn("تم رفض المنتج  ")
                 }
                
-            return newDataProduct; // Return the data directly
+            return Update_ProductAdmin; // Return the data directly
         } catch (error) {
             console.error('Error changing customer status:', error);
             return rejectWithValue(error.message || 'Failed to change order status');
@@ -560,6 +561,7 @@ const initialState = {
     pending_customer:[],
     customerss:[],
     loading: false,
+    Update_ProductAdmin:[],
     error: null,
     newDataSeller:[],
     newDataCustomer:[],
@@ -588,6 +590,21 @@ export const sellerPrdouctsReducer = createSlice({
                 state.published_true = action.payload.published_true; // Correctly store orders
             })
             .addCase(PublishedTrue.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+                state.success = false;
+            })
+            .addCase(UpdateProductAdmin.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.success = false;
+            })
+            .addCase(UpdateProductAdmin.fulfilled, (state, action) => {
+                state.loading = false;
+                state.success = true;
+                state.Update_ProductAdmin = action.payload.Update_ProductAdmin; // Correctly store orders
+            })
+            .addCase(UpdateProductAdmin.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
                 state.success = false;

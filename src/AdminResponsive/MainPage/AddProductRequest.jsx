@@ -1,10 +1,13 @@
-import  { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import AddRequestSummary from './AddRequestSummary';
 import { useDispatch, useSelector } from 'react-redux';
-// import { getNewOrders } from '../../../../trenttest/reducers/sellerOrdersReducer';
-import { PendingProductsAdmin, PublishedRentedTrue, UpdateProductAdmin } from '../../store/reducers/sellerProductsReducer';
+import { PendingProductsAdmin, UpdateProductAdmin } from '../../store/reducers/sellerProductsReducer';
 
-const OrderStatusStyles = {
+const AddProductRequest = () => {
+  const [ReviewOrder, setReviewOrder] = useState(false);
+  const dispatch = useDispatch();
+  const { products_pendingAdmin } = useSelector((state) => state.seller_products);
+  const OrderStatusStyles = {
     serviceUpcomingAppointments: {
         alignItems: 'flex-end',
         borderRadius: '24px',
@@ -310,145 +313,99 @@ const styles = {
         },
       };
 
-
-
-const AddProductRequest = () => {
-
-
-
-    
-  const [ReviewOrder, setReviewOrder] = useState(false);
-  const [ActiveOrder, setActiveOrder] = useState('');
-
-  const dispatch = useDispatch();
-  const {  products_pendingAdmin } = useSelector((state) => state.seller_products);
-  const {  published_rentedtrue } = useSelector((state) => state.seller_products);
- 
-
-
   const getTimeDifference = (createdAt) => {
-    const createdDate = createdAt.toDate(); // تحويل Timestamp إلى Date
+    const createdDate = createdAt.toDate(); 
     const now = new Date();
-    const diffInMilliseconds =  createdDate -  now;
-    const diffInHours = diffInMilliseconds / (1000 * 60 * 60); // تحويل الفرق إلى ساعات
+    const diffInMilliseconds = createdDate - now;
+    const diffInHours = diffInMilliseconds / (1000 * 60 * 60); 
 
     if (diffInHours >= 24) {
-        const diffInDays = diffInHours / 24; // تحويل إلى أيام
-        return `${Math.floor(diffInDays)} days`;
+      const diffInDays = diffInHours / 24; 
+      return `${Math.floor(diffInDays)} days`;
     }
 
     return `${Math.floor(diffInHours)} hours`;
-};
+  };
 
-
-// مثال الاستخدام
-
-
-  // Fetch data on component mount
   useEffect(() => {
-    
     dispatch(PendingProductsAdmin());
-     
-  }, []);
+  }, [dispatch]);
 
-  const [anotherList, setAnotherList] = useState([]);
+  const deleteOrderById = async (id) => {
+    const user = products_pendingAdmin.find(user => user.id === id.id); 
+    if (!user) return products_pendingAdmin;
 
-  const [AddRequest, setAddRequest] = useState(products_pendingAdmin);
-    // Function to delete an order by id
-    const deleteOrderById = async(id) => {
-      const user = products_pendingAdmin.find(user => user.id === id.id); 
-    
-      if (!user) return products_pendingAdmin;
-  
-      const productData = { ...user, status:'rejected'}; 
-        
-      await dispatch(UpdateProductAdmin({id:id.id,productData}))
-     await     dispatch(PendingProductsAdmin());
-
-  
-
-
+    const productData = { ...user, status: 'rejected' }; 
+    await dispatch(UpdateProductAdmin({ id: id.id, productData }));
+    dispatch(PendingProductsAdmin());
   };
 
-  // Function to add an order to another list
-  const addOrderToAnotherList = async(id) => {
-     const user = products_pendingAdmin.find(user => user.id === id.id); 
-    
-          if (!user) return products_pendingAdmin;
-      
-          const productData = { ...user, status:'approved'}; 
-            
-          await dispatch(UpdateProductAdmin({id:id.id,productData}))
-         await     dispatch(PendingProductsAdmin());
+  const addOrderToAnotherList = async (id) => {
+    const user = products_pendingAdmin.find(user => user.id === id.id); 
+    if (!user) return products_pendingAdmin;
 
-      
+    const productData = { ...user, status: 'approved' }; 
+    await dispatch(UpdateProductAdmin({ id: id.id, productData }));
+    dispatch(PendingProductsAdmin());
   };
 
-  const onReviewClick = (request) => {
-    setReviewOrder(prevState => !prevState); // Toggle the state
-    setActiveOrder(request.id)
-
+  const onReviewClick = (e) => {
+    // Delay the state change to ensure it does not happen during rendering
+    setReviewOrder(prevState => !prevState); // Toggle the review state
   };
 
-
-
-  const handleallOrdersclick = ()=> {
+  const handleallOrdersclick = () => {
     console.log('handleallOrdersclick:');
-
-
-    };
+  };
 
   return (
     <div style={OrderStatusStyles.serviceUpcomingAppointments}>
-    <div style={OrderStatusStyles.header}>
-    <button 
-          style={OrderStatusStyles.filterButton} 
-          onClick={handleallOrdersclick} // Add onClick handler
-        >
+      <div style={OrderStatusStyles.header}>
+        <button style={OrderStatusStyles.filterButton} onClick={handleallOrdersclick}>
           <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ae96818e45715f1a827a229643aec834784b498c298553ca983744f29b67715?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"
             style={OrderStatusStyles.icon}
           />
-          <span>كل الطلبات</span> {/* Use span for text inside button */}
+          <span>كل الطلبات</span>
         </button>
-      <div style={OrderStatusStyles.headerTitle}>
-        <div>طلبات إضافة المنتجات</div>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/42680772511d78cc3e6d369e483d9b1061140aa8839771f65c15527226a9b0af?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"
-          style={{ ...OrderStatusStyles.icon, width: '24px' }}
-        />
+        <div style={OrderStatusStyles.headerTitle}>
+          <div>طلبات إضافة المنتجات</div>
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/42680772511d78cc3e6d369e483d9b1061140aa8839771f65c15527226a9b0af?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"
+            style={{ ...OrderStatusStyles.icon, width: '24px' }}
+          />
+        </div>
       </div>
+
+      {products_pendingAdmin.map((request, index) => (
+        <div key={index} style={styles.productCard}>
+          <div style={styles.actionButtons}>
+            <button onClick={onReviewClick} style={styles.reviewButton}>
+              مراجعة المنتج
+            </button>
+          </div>
+          {ReviewOrder ? (
+            <AddRequestSummary 
+              product={request} 
+              onReviewClick={onReviewClick} 
+              addOrderToAnotherList={addOrderToAnotherList} 
+              deleteOrderById={deleteOrderById} 
+            />
+          ) : null}
+          <div style={styles.productInfo}>
+            <div style={styles.productName}>{request.name || "empty"}</div>
+          </div>
+          <img 
+            loading="lazy" 
+            src={request.imageUrl || "https://cdn.builder.io/api/v1/image/assets/TEMP/eea2576816ccc8b8ac2413c28ee8ce1beb4253d0a89b5307356da91e91a4405a?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"} 
+            alt="Product thumbnail" 
+            style={styles.productImage} 
+          />
+        </div>
+      ))}
     </div>
-
-    {products_pendingAdmin.map((request, index) => (
-            <div key={index} style={styles.productCard}>
-                <div style={styles.actionButtons}>
-                <button 
-                onClick={() => onReviewClick(request)}
-
-                style={styles.reviewButton}
-                >
-                    مراجعة المنتج
-                
-                </button>
-                </div>
-                {ReviewOrder ? (
-        <AddRequestSummary product={request} onReviewClick={onReviewClick} addOrderToAnotherList={addOrderToAnotherList} deleteOrderById={deleteOrderById} />
-      ) : null}
-                <div style={styles.productInfo}>
-                <div style={styles.timeAgo}>{getTimeDifference(request.createdAt) ||"empty"}</div>
-                <div style={styles.productName}>{request.name ||"empty"}</div>
-                </div>
-                <img loading="lazy" src={request.imageUrl || "https://cdn.builder.io/api/v1/image/assets/TEMP/eea2576816ccc8b8ac2413c28ee8ce1beb4253d0a89b5307356da91e91a4405a?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"} alt="Product thumbnail" style={styles.productImage} />
-            </div>      
-
-        ))}
-      
-    
-  </div>
- 
   );
 };
 

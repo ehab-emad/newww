@@ -1231,26 +1231,27 @@ export const updateSellerDetails = async (id, sellerData) => {
   };
   export const updateProduct = async (id, productData) => {
     try {
+        console.log(id)
         // Query to find the specific order
-        const setcustomersQuery = query(
+        const setcustomersQuerys = query(
             collection(firestore, 'products'),
             where('id', '==', id),
             // where('status', '==', 'pending')
         );
 
-        const setcustomerSnapshot = await getDocs(setcustomersQuery);
-        const rentedcustomer = setcustomerSnapshot.docs.map(doc => ({
+        const setcustomerSnapshots = await getDocs(setcustomersQuerys);
+        const rentedcustomers = setcustomerSnapshots.docs.map(doc => ({
             id: doc.id,
             ...doc.data(),
         }));
 
         // Find the specific order by orderid
-        const customerToUpdate = rentedcustomer.find(order => order.id === id);
+        const customerToUpdates= rentedcustomers.find(order => order.id === id);
 
-        if (customerToUpdate) {
+        if (customerToUpdates) {
             // Update the order status
             // console.log(sellerData)
-            const orderRef = doc(firestore, 'customer', customerToUpdate.id);
+            const orderRef = doc(firestore, 'products', customerToUpdates.id);
             await updateDoc(orderRef, {
                ...productData
             });

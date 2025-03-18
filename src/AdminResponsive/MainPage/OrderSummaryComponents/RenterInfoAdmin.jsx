@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SellerbyId } from "../../../store/reducers/sellerProductsReducer";
 
 
 const styles = {
@@ -128,6 +131,14 @@ const styles = {
 };
 
 function RenterInfoAdmin({Order}) {
+  const {Sellerby_Id  } = useSelector((state) => state.seller_products);
+
+  const dispatch=useDispatch()
+  useEffect(()=>{
+dispatch(SellerbyId(Order.sellerid))
+
+
+  },[])
   return (
     <div style={styles.renterCard}>
       <div style={styles.header}>
@@ -141,19 +152,30 @@ function RenterInfoAdmin({Order}) {
         aria-label="مراجعة العضوية"
       >
         مراجعة العضوية
-      </button>
-      <div style={styles.userInfo}>
+      </button>{
+        Sellerby_Id?
+        <div style={styles.userInfo}>
         <div style={styles.userDetails}>
-          <div style={styles.verifiedBadge}>مالك موثوق</div>
-          <div style={styles.userName}> {Order.customername}</div>
+          <div style={styles.verifiedBadge}> 
+          {
+              Sellerby_Id.status==="approved"?       '   مالك   موثوق'
+              :
+             ' مالك غير موثق'
+
+            }
+
+          </div>{console.log(Sellerby_Id)}
+          <div style={styles.userName}> {Sellerby_Id.sellername||"empty"}</div>
         </div>
         <img
           loading="lazy"
-          src={Order.img || "https://cdn.builder.io/api/v1/image/assets/TEMP/5f02b4db5cc70c11bdf0641a418032178f997ffff8f299103fa0e831bdb4ff46?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"}
+          src={Sellerby_Id.profileimage || "https://cdn.builder.io/api/v1/image/assets/TEMP/5f02b4db5cc70c11bdf0641a418032178f997ffff8f299103fa0e831bdb4ff46?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"}
           style={styles.userAvatar}
           alt="صورة المالك خالد محمد"
         />
-      </div>
+      </div>:<div></div>
+      }
+    
       
       </div>
   

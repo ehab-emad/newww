@@ -183,7 +183,7 @@ button img:hover{
     width: 100%;
     }
     .rejectButton,.approveButton{
-      padding: 16px 24px;
+      padding: 16px 20px;
     }
     .mainContainer_product .left{
       width: 100%;
@@ -376,7 +376,7 @@ button img:hover{
       }
       @media (max-width: 500px) {
         .rejectButton,.approveButton{
-          padding: 12px 45px;
+          padding: 12px 53px;
     
         }
       }

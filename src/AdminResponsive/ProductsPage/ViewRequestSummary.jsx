@@ -754,7 +754,7 @@ const ViewRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById
   
       </div>
       </div>
-       <div style={addressStyles.addresssection} className='mainContainer_product'>
+       {/* <div style={addressStyles.addresssection} className='mainContainer_product'>
             <div style={addressStyles.header}>
             <div style={addressStyles.headerTitle}>{info.name || "no name"}</div>
               <img
@@ -788,7 +788,7 @@ const ViewRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById
               alt="Location pin icon"
             />
             </div>
-        </div>
+        </div> */}
         <RenterInfoAdmin  />
         <div style={styles.buttonscontainer}>
 

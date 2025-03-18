@@ -173,23 +173,38 @@ export const getProducts = async () => {
 };
 export const getSellerById = async (sellerId) => {
     try {
-        console.log(sellerId)
-        const sellerQuery = query(
-            collection(firestore, 'sellers'),
-            where('id', '==', sellerId) // البحث باستخدام ID
-        );
-        const ordersSnapshot = await getDocs(sellerQuery);
-        const newordersadmin = ordersSnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        console.log(newordersadmin)
-        return newordersadmin;
+      console.log(sellerId);
+  
+      // استعلام للبحث عن البائع باستخدام الـ sellerId
+      const sellerQuery = query(
+        collection(firestore, 'sellers'),
+        where('id', '==', sellerId)
+      );
+  
+      // تنفيذ الاستعلام وانتظار تحميل النتائج
+      const ordersSnapshot = await getDocs(sellerQuery); // انتظار النتيجة بشكل صحيح
+  
+      // تحويل النتائج إلى شكل مناسب
+      const newordersadmin = ordersSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+  
+      // التأكد من أن البيانات موجودة
+      if (newordersadmin.length > 0) {
+        console.log(newordersadmin[0]);
+        return newordersadmin[0];  // إرجاع أول بائع
+      } else {
+        // إذا لم توجد بيانات
+        console.log("No seller found with the given ID");
+        return null;  // إرجاع null إذا لم يتم العثور على بائع
+      }
     } catch (error) {
-        console.error('Error fetching pending sellers:', error);
-        throw error;
+      console.error('Error fetching seller:', error);
+      throw error;  // إعادة رمي الخطأ لتتم معالجته في مكان آخر
     }
-};
+  };
+  
 export const getProductById = async (productid) => {
     try {
         console.log(productid)
@@ -1541,22 +1556,25 @@ export async function addEmployee(employeeData) {
     }
   
   };
+
   export const countProductsByUserId = async (sellerid) => {
     try {
       // Reference the 'products' collection
       const productsRef = collection(firestore, 'products');
   
-      // Create a query to filter products by userId
+      // Create a query to filter products by sellerid
       const q = query(productsRef, where('sellerid', '==', sellerid));
   
-      // Execute the query and get the count
-      const snapshot = await getCountFromServer(q);
-      const count = snapshot.data().count;
+      // Execute the query and get the documents
+      const querySnapshot = await getDocs(q); // استخدم getDocs بدلاً من getCountFromServer
   
-    //   console.log(Number of products for sellerid "${sellerid}":, count);
+      // Count the number of documents matching the query
+      const count = querySnapshot.size; // .size يعطي عدد الوثائق في الاستعلام
+  
       return count; // Return the count of products
     } catch (error) {
       console.error('Error counting products by sellerid:', error);
       throw error; // Re-throw the error to handle it in the calling code
     }
   };
+  

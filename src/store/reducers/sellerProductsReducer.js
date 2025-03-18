@@ -569,7 +569,7 @@ const initialState = {
     delete_Product:[],
     employees:[],
     newDataemployee:[],
-    Sellerby_Id:[],
+    Sellerby_Id:{},
     customerby_Id:[],
     delete_employee:[],
     pending_sellers:[],

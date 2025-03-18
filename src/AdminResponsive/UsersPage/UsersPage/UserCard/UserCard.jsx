@@ -117,7 +117,7 @@ useEffect(()=>{
   };
 
   const getVerificationText = () => {
-    return user.status==="approved" ? "مالك موثوق" : "مالك غير موثق";
+    return user.status==="suspended" || user.status==="rejected" ? <div></div> :user.status==="approved" ? "مالك موثوق" : "مالك غير موثق";
   };
 
 const   actionsicons= [

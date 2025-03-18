@@ -5,6 +5,7 @@ import  { useState } from 'react';
 import TitleAddProductRequest from './TitleAddProductRequest';
 import TextBoxField from './TextBoxField';
 import '../../App.css'
+import RenterInfoAdmin from './OrderSummaryComponents/RenterInfoAdmin';
 const backgroundstyles = {
 
   container :{
@@ -696,7 +697,7 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                   <div style={ProductDetailsStyles.topSection}>
                     <div style={ProductDetailsStyles.pricescontianer}>
                     <TextBoxField 
-                      label="مبلغ التأمين المطلوب " 
+                      label="مبلغ التأمين  " 
                       placeholder={product.insurancefee} 
                   />
                      <TextBoxField 
@@ -736,7 +737,7 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
           
               </div>
               </div>
-               <div style={addressStyles.addresssection}>
+               {/* <div style={addressStyles.addresssection}>
                     <div style={addressStyles.header}>
                     <div style={addressStyles.headerTitle}>{addressData.headerTitle}</div>
                       <img
@@ -772,8 +773,8 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                       alt="Location pin icon"
                     />
                     </div>
-                </div>
-                {/* <RenterInfoAdmin  /> */}
+                </div> */}
+                <RenterInfoAdmin Order={product}  />
                 <div style={styles.buttonscontainer} className='buttonscontainer'>
 
                       <button 

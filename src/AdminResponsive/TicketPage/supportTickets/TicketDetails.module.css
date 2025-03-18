@@ -75,8 +75,8 @@
 }
 
 .attachedImage {
-  width: 72px;
-  height: 72px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
 }
 
@@ -84,12 +84,15 @@
   background: var(--BG-gray, #f6f5f5);
   border-radius: 8px;
   padding: 16px;
+  
   margin-top: 8px;
   color: var(--Paragraph, #736e67);
   line-height: 20px;
   min-height: 72px;
   display: flex;
   align-items: center;
+  direction: rtl !important;
+
 }
 
 .supportResponse {

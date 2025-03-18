@@ -114,7 +114,7 @@ export const TicketDetails = ({ ticketid, username, title, usertype, images, des
               {images.map((src, index) => (
                 <img
                   key={index}
-                  src={src || "https://via.placeholder.com/150"}
+                  src={src || "https://res.cloudinary.com/dbztvm0io/image/upload/v1741680484/default_image_o2gbgq.jpg"}
                   className={styles.attachedImage}
                   alt={`Attached image ${index + 1}`}
                 />

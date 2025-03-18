@@ -129,31 +129,43 @@ export const EmployeesCard = ({user , removeUser,Changeactive  , ChangeStatus}) 
 {/* this what pop when you press on edit button */}
 {isEditShown && <EditUserPopOut Changeactive={Changeactive} user = {user} close = {changeEditPopState}  ChangeStatus = {ChangeStatus}/>}
   
-  <div className='smallproductcard'>
-  <img src={'https://cdn.builder.io/api/v1/image/assets/TEMP/b96d1ed5b69bb8dcca96ca72efe39f483bf3d84f91f02fd737257c912709c862?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e'} onClick={() => toggleProduct(user.id)} style={{width : '20px' , height : '20px', transform:  "rotate(180deg)" }}/>
+  <div className={styles.smallproductcard}>
+  <div className={styles.contentsmall}><img src={'https://cdn.builder.io/api/v1/image/assets/TEMP/b96d1ed5b69bb8dcca96ca72efe39f483bf3d84f91f02fd737257c912709c862?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e'} onClick={() => toggleProduct(user.id)} style={{width : '20px' , height : '20px', transform:  "rotate(180deg)" }}/>
 
 
-  <div className={styles.actions}>
-       {actionicons.map((action, index) => (
-         <button
-         key={index}
-         className={styles.actionButton}
-         onClick={() => {
-          if (action.label === "Delete") {
-            changeDeletePopState();
-          } else if (action.label === "Edit") {
-            changeEditPopState();
-          }
-        }}
-       >
-         <img src={action.icon} alt={action.label} className={styles.actionIcon} />
-       </button>
-        ))}
-      </div>
+<div className={styles.actions}>
+     {actionicons.map((action, index) => (
+       <button
+       key={index}
+       className={styles.actionButton}
+       onClick={() => {
+        if (action.label === "Delete") {
+          changeDeletePopState();
+        } else if (action.label === "Edit") {
+          changeEditPopState();
+        }
+      }}
+     >
+       <img src={action.icon} alt={action.label} className={styles.actionIcon} />
+     </button>
+      ))}
+    </div></div>
      
       <div  style={styless.filterItem}>{user.role ||"empty"}</div>
 
-      <div className={styles.userName}>{user.name||"empty"}</div>
+      <div className={styles.userInfo}  style={styless.filtername}>
+<div className={styles.userDetails}>
+  <div className={styles.badges}>
+  {!user.active ? (
+        <div className={styles.badgeSuspended}>حساب موقوف</div>
+      ) : ( // If user is active and pending
+        <div className={styles.badgeActive}>حساب مفعل</div>
+       )}
+  </div>
+  <div className={styles.userName}>{user.name ||"empty"}</div>
+</div>
+<img src={user.avatar ||  "https://cdn.builder.io/api/v1/image/assets/TEMP/aa2b4b0680dff15b2c6fcd3dfb8d3a35f3aae415d004bfa31262d56859744012?placeholderIfAbsent=true&apiKey=0b9472df8a3343138338e0b5d406ca16"} alt={user.name} className={`${styles.userAvatar} `} />
+</div>
 
   </div>
 {
@@ -210,15 +222,13 @@ openProducts[user.id]  &&
   <div className={styles.badges}>
   {!user.active ? (
         <div className={styles.badgeSuspended}>حساب موقوف</div>
-      ) : user.pendding ? ( // If user is active and not pending
-        <div className={styles.badgeUnverified}>حساب غير مفعل</div>
       ) : ( // If user is active and pending
         <div className={styles.badgeActive}>حساب مفعل</div>
        )}
   </div>
   <div className={styles.userName}>{user.name ||"empty"}</div>
 </div>
-<img src={user.avatar ||  "https://cdn.builder.io/api/v1/image/assets/TEMP/aa2b4b0680dff15b2c6fcd3dfb8d3a35f3aae415d004bfa31262d56859744012?placeholderIfAbsent=true&apiKey=0b9472df8a3343138338e0b5d406ca16"} alt={user.name} className={`${styles.userAvatar} hideicon`} />
+<img src={user.avatar ||  "https://cdn.builder.io/api/v1/image/assets/TEMP/aa2b4b0680dff15b2c6fcd3dfb8d3a35f3aae415d004bfa31262d56859744012?placeholderIfAbsent=true&apiKey=0b9472df8a3343138338e0b5d406ca16"} alt={user.name} className={`${styles.userAvatar} `} />
 </div>
 </ProductsFilter></>
   );

@@ -117,7 +117,7 @@ useEffect(()=>{
   };
 
   const getVerificationText = () => {
-    return user.status==="suspended" || user.status==="rejected" ? <div></div> :user.status==="approved" ? "مالك موثوق" : "مالك غير موثق";
+    return user.status==="suspended" || user.status==="rejected" ? <div style={{display:"none"}}></div> :user.status==="approved" ? "مالك موثوق" : "مالك غير موثق";
   };
 
 const   actionsicons= [
@@ -169,14 +169,14 @@ const   actionsicons= [
             <div className={getVerificationBadgeClass()}>
               {getVerificationText()}
             </div>
-            {user.status == "suspended" ? <div className={styles.badgeSuspended}>عضو موقوف</div> : user.rentalsCount > 15 ? <div className={styles.badgeActive}>عضو نشط</div> : undefined}
+            {user.status == "suspended" ? <div className={styles.badgeSuspended}>عضو موقوف</div> : user.status == "rejected"  ? <div className={styles.badgeSuspended}>عضو  مرفوض</div> : <div style={{display:"none"}}></div>}
             
           </div>
           <div className={styles.userName}>{user.sellername ? user.sellername :user.customername ? user.customername  :"empty"}</div>
         </div>
         {user.profileimage ?
-        <img src={user.profileimage} alt={user.name} className={`${styles.userAvatar} hideicon`}  />:
-        <img src={"https://cdn.builder.io/api/v1/image/assets/TEMP/988b9681971b56ea8f73884c35050ffaa7c50503f852720e20ccedd472bbd8e9?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"} alt={user.name} className={`${styles.userAvatar} hideicon`} />
+        <img src={user.profileimage} alt={user.name} className={`${styles.userAvatar} `}  />:
+        <img src={"https://cdn.builder.io/api/v1/image/assets/TEMP/988b9681971b56ea8f73884c35050ffaa7c50503f852720e20ccedd472bbd8e9?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"} alt={user.name} className={`${styles.userAvatar} `} />
       
       }
         
@@ -212,9 +212,24 @@ const   actionsicons= [
         ))}
       </div>
       <div style={styless.filterItem}>{user.productsCount || 0}</div>
-
-      <div className={styles.userName}>{user.sellername?  user.sellername:user.customername? user.customername:"empty"}</div>
-
+      <div className={styles.userInfo} style={styless.filtername}>
+        <div className={styles.userDetails}>
+          <div className={styles.badges}>
+            <div className={getVerificationBadgeClass()}>
+              {getVerificationText()}
+            </div>
+            {user.status == "suspended" ? <div className={styles.badgeSuspended}>عضو موقوف</div> : user.status == "rejected"  ? <div className={styles.badgeSuspended}>عضو  مرفوض</div> : <div style={{display:"none"}}></div>}
+            
+          </div>
+          <div className={styles.userName}>{user.sellername ? user.sellername :user.customername ? user.customername  :"empty"}</div>
+        </div>
+        {user.profileimage ?
+        <img src={user.profileimage} alt={user.name} className={`${styles.userAvatar} `}  />:
+        <img src={"https://cdn.builder.io/api/v1/image/assets/TEMP/988b9681971b56ea8f73884c35050ffaa7c50503f852720e20ccedd472bbd8e9?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"} alt={user.name} className={`${styles.userAvatar} `} />
+      
+      }
+        
+      </div>
 {/* 
 
  <img

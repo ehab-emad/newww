@@ -46,9 +46,10 @@ const styles = {
       borderRadius: '24px',
       background: 'var(--White, #fff)',
       display: 'flex',
-      width: 'auto', // Full width of the parent
-      minWidth: 'calc(100% - 32px)', // Ensure minWidth accounts for parent's padding
-      maxWidth: '100%', // Prevent exceeding parent width
+      flexDirection:"reverseColumn",gap:"8px",
+      // width: 'auto', // Full width of the parent
+      // Ensure minWidth accounts for parent's padding
+      width: '100%', // Prevent exceeding parent width
       height: 'auto',
       overflow: 'hidden',
       padding: '16px',
@@ -77,6 +78,7 @@ const styles = {
       margin: 'auto 0',
       padding: '12px 24px',
       border: 'none',
+      width:"100%",
       cursor: 'pointer',
     },
     rejectButton: {
@@ -772,7 +774,7 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                     </div>
                 </div>
                 {/* <RenterInfoAdmin  /> */}
-                <div style={styles.buttonscontainer}>
+                <div style={styles.buttonscontainer} className='buttonscontainer'>
 
                       <button 
                                 style={{ ...styles.actionButton, ...styles.rejectButton }}
@@ -846,8 +848,11 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                                             
                               <div style={ProductDetailsStyles.featuresSection}>
                                                     <div style={ProductDetailsStyles.label}>مميزات المنتج</div>
+                                                    
                                                     <div style={ProductDetailsStyles.featuresGrid}>
-                                                   { product.features?   (keys.map((feature, index) => (
+                                                   { product.features?  
+                                                  
+                                                    (keys.map((feature, index) => (
                                                         <div key={index} style={ProductDetailsStyles.featureBox}>
                                                           <input
                                                             type="text"
@@ -856,7 +861,7 @@ const AddRequestSummary = ({onReviewClick,addOrderToAnotherList,deleteOrderById 
                                                             style={ ProductDetailsStyles.placeholder }
                                                             />
                                                         </div>
-                                                      ))):"empty"}
+                                                      ))):"emmmmmmmmmmmmmmmpty"}
                                                     </div>
                               </div>
 

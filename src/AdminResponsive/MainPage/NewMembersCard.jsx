@@ -117,20 +117,22 @@ const allpending=[...pending_sellers,...pending_customer]
       const sellerData = { ...user, status:'rejected',active:false}; 
         
       await dispatch(UpdatesellerAdmin({id:id.id,sellerData}))
-     await dispatch(Allsellers())
-      console.log(sellerData)
+      await dispatch(pendingcustomer())
+      await dispatch(pendingsellers())
+      console.log("mmm",sellerData)
   
     }
     else{
-      const user = allpending.find(user => user.id === id.customerid); 
+      const user = allpending.find(user => user.id === id.id); 
 
       if (!user) return allpending;
   
       const customerData = { ...user, status:'rejected',active:false}; 
         
     await  dispatch(UpdatecustomerAdmin({id:id.id,customerData}))
-    await     dispatch(AllCustomers())
-      console.log(customerData)
+    await dispatch(pendingcustomer())
+    await dispatch(pendingsellers())
+      console.log("kkk",customerData)
   
     }
 
@@ -153,25 +155,18 @@ const allpending=[...pending_sellers,...pending_customer]
     if(id.hasOwnProperty("sellername")){
       
     const user = allpending.find(user => user.id === id.id); 
-console.log(user)
+
     if (!user) return allpending;
-  if(user.active===true){
-    const sellerData = { ...user, status:'suspended',active:false}; 
-      
-   await dispatch(UpdatesellerAdmin({id:id.id,sellerData}))
-   await dispatch(Allsellers())
-  //  await console.log(sellerData)
 
 
-  }
-  else if(user.active===false){
    const  sellerData = { ...user, status:'approved',active:true}; 
      
    await dispatch(UpdatesellerAdmin({id:id.id,sellerData}));
-   await  dispatch(Allsellers())
+   await dispatch(pendingcustomer())
+   await dispatch(pendingsellers())
   //  awaitconsole.log(sellerData)
 
-  }
+  
     }
     else{
       
@@ -182,7 +177,8 @@ console.log(user)
    const  customerData = { ...user, status:'approved',active:true}; 
      
    await dispatch(UpdatecustomerAdmin({id:id.id,customerData}))
-   await dispatch(AllCustomers())
+   await dispatch(pendingcustomer())
+   await dispatch(pendingsellers())
     console.log(customerData)
 
   

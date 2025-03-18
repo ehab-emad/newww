@@ -266,7 +266,6 @@ const dispatch=useDispatch()
 
   useEffect(() => {
     setUsers(filteredData); // Update users when filteredData changes
-    
   }, [filteredData,newDataSeller,delete_customer,delete_Seller,newDataCustomer,dispatch]);
   
   return (

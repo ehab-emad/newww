@@ -160,12 +160,12 @@ export const EmployeesCard = ({user , removeUser,Changeactive  , ChangeStatus}) 
 openProducts[user.id]  && 
 <div style={{display : 'flex' , flexDirection : 'column',position:"relative"}} className='line'>
 <div style={{display : 'flex' , flexDirection : 'row-reverse' , justifyContent : 'space-between'}}>
-<p style={{direction : 'rtl' , fontSize : 'large' , margin : '5px 0px'}}><span style = {{color : '#736E67'}}> تاريخ الإنضمام : </span> {user.registrationDate}</p>
-<p style={{direction : 'rtl' , fontSize : 'large' , margin : '5px 0px'}}><span style = {{color : '#736E67'}}> رقم الجوال : </span> {user.phone}</p>
+<p style={{direction : 'rtl' , fontSize : 'large' , margin : '5px 0px'}}><span style = {{color : '#736E67'}}> اسم  الموظف : </span> {user.name||"empty"}</p>
+<p style={{direction : 'rtl' , fontSize : 'large' , margin : '5px 0px'}}><span style = {{color : '#736E67'}}> رقم الجوال : </span> {user.phone||"empty"}</p>
 </div>
 <div style={{display : 'flex' , flexDirection : 'row-reverse' , justifyContent : 'space-between'}}>
-<p style={{fontSize : 'large' , margin : '0px'}}>{user.productsCount} :<span style = {{color : '#736E67'}}> عدد المنتجات </span></p>
-<p style={{direction : 'rtl' , fontSize : 'large' , margin : '0px'}}><span style = {{color : '#736E67'}}>التاخيرات : </span>{user.rentalsCount}</p>
+<p style={{fontSize : 'large' , margin : '0px',direction : 'rtl' }}> <span style = {{color : '#736E67'}}> عدد المنتجات :</span> {user.productsCount||"empty"}</p>
+<p style={{direction : 'rtl' , fontSize : 'large' , margin : '0px'}}><span style = {{color : '#736E67'}}>الإيميل : </span>{user.email}</p>
 </div>
 </div>
  

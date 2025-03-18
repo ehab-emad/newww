@@ -23,7 +23,7 @@ const NotificationsWindowAdmin = ({close, setCurrentPage,CountNotifications, not
       borderRadius: '16px',
       backgroundColor: 'rgba(255, 255, 255, 1)',
       display: 'flex',
-      width: 'auto',
+      width: '330px',
       height : ' 400px',
       flexDirection: 'column',
       overflow: 'auto',
@@ -96,7 +96,7 @@ const NotificationsWindowAdmin = ({close, setCurrentPage,CountNotifications, not
     
 <div style={styles.overlay}>
 
-    <div style={styles.notificationsMenu}>
+    <div style={styles.notificationsMenu} className="notifacationwidth">
       <div style={styles.header}>
         <img
           loading="lazy"

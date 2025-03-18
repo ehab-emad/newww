@@ -71,7 +71,7 @@ const PopOut = ({close,member, rejection,verified,refused}) => {
                    refused(member) 
                    close()
                  }}>رفض توثيق العضوية</button>
-                 <button className={ styles.approveButton } onClick={() =>  {verified(member)
+                 <button className={ styles.approveButton } onClick={() =>  {toggleverified(member)
                    close()
                  } }>توثيق العضوية</button>
                </div>

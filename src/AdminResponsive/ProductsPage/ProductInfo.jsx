@@ -102,6 +102,7 @@ const stylesProductCard = {
     actionIcon: {
       border: 'none',
       background: 'none',
+      width:"31px",
       padding: 0,
       cursor: 'pointer',
       
@@ -216,7 +217,7 @@ const stylesProductCard = {
       textAlign: 'right',
       flex: 1,
       margin: 'auto 0',
-      font: '600 16px Expo Arabic, -apple-system, Roboto, Helvetica, sans-serif',
+      font: '600 13px Expo Arabic, -apple-system, Roboto, Helvetica, sans-serif',
       
       
       
@@ -389,14 +390,7 @@ export default function ProductInfo({activeFilterText,activeTop, setCurrentPage,
    
 
     // // Refetch products after deletion
-    dispatch(DraftProducts(userId));
-    dispatch(PublishedTrue(userId));
-    dispatch(PublishedFalse(userId));
-    dispatch(PublishedRentedFalse(userId));
-    dispatch(ConfirmedProducts(userId));
-    dispatch(PendingProducts(userId));
-    dispatch(RejectedProducts(userId));
-    dispatch(PublishedRentedTrue(userId));
+    await dispatch(DeleteproductAdmin(id))
 
     // Close the delete confirmation popup
    setDeletProduct(false);
@@ -619,13 +613,15 @@ const handladdproduct=  () =>{
      <div style={styles.filterItem}>{product.brand || 'empty'}</div>
      <div style={styles.filterItem}>
        <div >
-        {!product.rented ?
+        {product.published && product.rented===false ?
    <div style={{width:"100%"}}>
     <img style={{width:"100%"}} src='https://res.cloudinary.com/dbztvm0io/image/upload/v1741538282/%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA_-_%D9%85%D8%AA%D8%A7%D8%AD_%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1_mym7te.png' alt=' available'/>
     </div>
-   :
+   :product.published && product.rented===true ?
    <div style={{width:"100%"}}>
     <img style={{width:"100%"}} src='https://res.cloudinary.com/dbztvm0io/image/upload/v1741538281/%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA_-_%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC_%D9%85%D8%A4%D8%AC%D8%B1_lprfyi.png' alt='not available'/>
+    </div>: <div style={{width:"100%"}}>
+    <img style={{width:"100%"}} src='https://res.cloudinary.com/dbztvm0io/image/upload/v1741538282/%D9%85%D9%86%D8%AA%D8%AC_-_%D9%85%D8%A7%D9%84%D9%83_-_%D8%BA%D9%8A%D8%B1_%D9%85%D9%86%D8%B4%D9%88%D8%B1_bou7gr.png' alt='not available'/>
     </div>
           
         }
@@ -651,18 +647,22 @@ const handladdproduct=  () =>{
   <img src={'https://cdn.builder.io/api/v1/image/assets/TEMP/b96d1ed5b69bb8dcca96ca72efe39f483bf3d84f91f02fd737257c912709c862?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e'} onClick={() => toggleProduct(product.id)} style={{width : '20px' , height : '20px', transform:  "rotate(180deg)" }}/>
 
 
-<div  style={{gap:"13px"}} className={maindiv.actionButtons}>
+<div  style={{gap:"8px",display:"flex",margin:"0 3px"}} className={maindiv.actionButtons}>
 {buttonicons.map((icon, index) => (
 <img
 key={index}
 loading="lazy"
 src={icon.src}
+className='imgWidth'
 alt={icon.alt}
 style={stylesProductCard.actionIcon}
 onClick={() => handleIconClick(index,product.id)}
 />
 ))}
 </div>
+{DeletProduct ? (
+        <RejectOrderPopCard deleteProduct={deleteProduct} product={product} setDeletProduct={setDeletProduct} type='delete'/>
+      ) : null}
 
 
 
@@ -676,13 +676,15 @@ onClick={() => handleIconClick(index,product.id)}
  /> */}
 
 <div style={{width:"23%",margin:"9px "}}>
-        {!product.rented ?
+{product.published && product.rented===false ?
    <div style={{width:"100%"}}>
     <img style={{width:"100%"}} src='https://res.cloudinary.com/dbztvm0io/image/upload/v1741538282/%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA_-_%D9%85%D8%AA%D8%A7%D8%AD_%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1_mym7te.png' alt=' available'/>
     </div>
-   :
+   :product.published && product.rented===true ?
    <div style={{width:"100%"}}>
     <img style={{width:"100%"}} src='https://res.cloudinary.com/dbztvm0io/image/upload/v1741538281/%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA_-_%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC_%D9%85%D8%A4%D8%AC%D8%B1_lprfyi.png' alt='not available'/>
+    </div>: <div style={{width:"100%"}}>
+    <img style={{width:"100%"}} src='https://res.cloudinary.com/dbztvm0io/image/upload/v1741538282/%D9%85%D9%86%D8%AA%D8%AC_-_%D9%85%D8%A7%D9%84%D9%83_-_%D8%BA%D9%8A%D8%B1_%D9%85%D9%86%D8%B4%D9%88%D8%B1_bou7gr.png' alt='not available'/>
     </div>
           
         }
@@ -694,27 +696,27 @@ onClick={() => handleIconClick(index,product.id)}
 <div  style={stylesProductCard.productTitle}>{product.name || "empty"}
 
 
-  
+</div>
+
+
+  <div style={{width:"20%"}}>
 <img
 loading="lazy"
 src={product.img || "https://cdn.builder.io/api/v1/image/assets/TEMP/80629cbe88e05e51bc90c1bb3b2858c0690e6cb7d40d292e4b417507a0e600f2?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e7"}
 alt="Product image"
 style={stylesProductCard.productImage}
-/>
-</div>
-
-
+/></div>
 
   </div>
 {
 openProducts[product.id]  && 
-<div style={{display : 'flex' , flexDirection : 'column',position:"relative"}} className='line'>
+<div style={{display : 'flex' , flexDirection : 'column',  gap: '10px',position:"relative"}} className='line'>
 <div style={{display : 'flex' , flexDirection : 'row-reverse' , justifyContent : 'space-between'}}>
 <p style={{direction : 'rtl' , fontSize : 'large' , margin : '5px 0px'}}><span style = {{color : '#736E67'}}>التصنيف : </span> {product.category|| "empty"}</p>
 <p style={{direction : 'rtl' , fontSize : 'large' , margin : '5px 0px'}}><span style = {{color : '#736E67'}}>السعر : </span> {product.price || "empty"}</p>
 </div>
-<div style={{display : 'flex' , flexDirection : 'row-reverse' , justifyContent : 'space-between'}}>
-<p style={{fontSize : 'large' , margin : '0px'}}>{product.brand || "empty"} : <span style = {{color : '#736E67'}}> الماركة </span></p>
+<div style={{display : 'flex' , flexDirection : 'row-reverse' ,    gap: '10px', justifyContent : 'space-between'}}>
+<p style={{fontSize : 'large' , margin : '0px',direction : 'rtl' }}> <span style = {{color : '#736E67'}}> الماركة </span>{product.brand || "empty"}</p>
 <p style={{direction : 'rtl' , fontSize : 'large' , margin : '0px'}}><span style = {{color : '#736E67'}}>الخصم : </span>{product.discount || "empty"}</p>
 </div>
 </div>

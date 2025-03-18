@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import DeleteUserPopOut from "../deleteUserPopOut/DeleteUserDialog";
 import EditUserPopOut from "../memberDetails/EditUserPopOut";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { countProductsByUserIdAdmin } from "../../../../store/reducers/sellerProductsReducer";
 
 
 export const UserCard = ({user , removeUser  , toggleUserVerified , toggleUserStatus}) => {
@@ -92,12 +94,15 @@ export const UserCard = ({user , removeUser  , toggleUserVerified , toggleUserSt
   };
   // state for edit button
   const [isEditShown , setEditShown] = useState(false);
+  const {  count_Products} = useSelector((state) => state.seller_products);
+  
   const changeEditPopState = () =>{
     setEditShown(!isEditShown)
   }
+  const dispatch=useDispatch()
 useEffect(()=>{
 
-},[user,removeUser,toggleUserVerified,toggleUserStatus])
+},[user])
 
   const toggleProduct = (productId) => {
     setOpenProducts((prev) => ({
@@ -183,7 +188,10 @@ const   actionsicons= [
       {isEditShown && <EditUserPopOut user = {user} close = {changeEditPopState} toggleUserVerified = {toggleUserVerified} toggleUserStatus = {toggleUserStatus}/>}
 
   <div className='smallproductcard'>
-  <img src={'https://cdn.builder.io/api/v1/image/assets/TEMP/b96d1ed5b69bb8dcca96ca72efe39f483bf3d84f91f02fd737257c912709c862?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e'} onClick={() => toggleProduct(user.id)} style={{width : '20px' , height : '20px', transform:  "rotate(180deg)" }}/>
+  <img src={'https://cdn.builder.io/api/v1/image/assets/TEMP/b96d1ed5b69bb8dcca96ca72efe39f483bf3d84f91f02fd737257c912709c862?placeholderIfAbsent=true&apiKey=6d0a7932901f457a91041e45ceb959e'} onClick={() =>{ toggleProduct(user.id)
+    dispatch(countProductsByUserIdAdmin(user.id))
+  }
+  } style={{width : '20px' , height : '20px', transform:  "rotate(180deg)" }}/>
 
 
   <div className={styles.actions}>
@@ -205,7 +213,7 @@ const   actionsicons= [
       </div>
       <div style={styless.filterItem}>{user.productsCount || 0}</div>
 
-      <div className={styles.userName}>{user.sellername ||"empty"}</div>
+      <div className={styles.userName}>{user.sellername?  user.sellername:user.customername? user.customername:"empty"}</div>
 
 {/* 
 
@@ -226,12 +234,12 @@ const   actionsicons= [
 openProducts[user.id]  && 
 <div style={{display : 'flex' , flexDirection : 'column',position:"relative"}} className='line'>
 <div style={{display : 'flex' , flexDirection : 'row-reverse' , justifyContent : 'space-between'}}>
-<p style={{direction : 'rtl' , fontSize : 'large' , margin : '5px 0px'}}><span style = {{color : '#736E67'}}> تاريخ الإنضمام : </span> {formatTimestamp(user.createdAt)}</p>
-<p style={{direction : 'rtl' , fontSize : 'large' , margin : '5px 0px'}}><span style = {{color : '#736E67'}}> رقم الجوال : </span> {user.phone}</p>
+<p style={{direction : 'rtl' , fontSize : 'large' , margin : '5px 0px'}}><span style = {{color : '#736E67'}}> تاريخ الإنضمام : </span> {formatTimestamp(user.createdAt)||"empty"}</p>
+<p style={{direction : 'rtl' , fontSize : 'large' , margin : '5px 0px'}}><span style = {{color : '#736E67'}}> رقم الجوال : </span> {user.phone||"empty"}</p>
 </div>
 <div style={{display : 'flex' , flexDirection : 'row-reverse' , justifyContent : 'space-between'}}>
-<p style={{fontSize : 'large' , margin : '0px'}}>{user.productsCount} :<span style = {{color : '#736E67'}}> عدد المنتجات </span></p>
-<p style={{direction : 'rtl' , fontSize : 'large' , margin : '0px'}}><span style = {{color : '#736E67'}}>التاخيرات : </span>{user.rentalsCount}</p>
+<p style={{fontSize : 'large' ,direction : 'rtl' , margin : '0px'}}> <span style = {{color : '#736E67'}}> عدد المنتجات :</span> {count_Products||"empty"}</p>
+<p style={{direction : 'rtl' , fontSize : 'large' , margin : '0px'}}><span style = {{color : '#736E67'}}>التاخيرات : </span>{user.rentalsCount||"empty"}</p>
 </div>
 </div>
  

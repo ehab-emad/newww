@@ -15,6 +15,7 @@ ul{
   }
 }
 
+
 .App-header {
 
   background-color: #282c34;
@@ -41,7 +42,30 @@ ul{
 }
 
 
+@media (max-width: 603px) {
+.userinfo{
+  min-width: 155px;
+}
+  .notifacationwidth{
+    min-width: 155px;
+  }
+  .imgWidth{
+    width: 30px;
+  }
 
+}
+@media (min-width: 606px) {
+  .imgWidth{
+    width: 40px;
+  }
+  .userinfo{
+    min-width: 300px;
+  }
+  .notifacationwidth{
+    min-width: 530px;
+  }
+
+}
 @media (max-width: 993px) {
   .topstate{
     top:133% ;
@@ -152,8 +176,14 @@ ul{
       .smallproductcardcover{
         display: none;
       }
+    
     } 
     @media (max-width: 562px) {
+      .buttonscontainer{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
 .topstate{
   top: 131%;
 }

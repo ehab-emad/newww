@@ -20,7 +20,7 @@ const styles = {
     flexGrow: 1, // Allow it to grow and fill available space
     flexShrink: 0, // Prevent shrinking if there's enough space
     boxSizing: 'border-box', // Include padding and borders in width calculations      gap: '16px',
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
     padding: '16px',
     alignItems: "center",
   },
@@ -41,7 +41,7 @@ const styles = {
     cursor: 'pointer'
   },
   infoContainer: {
-    display: 'flex',
+    // display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
     justifyContent: 'center',
@@ -66,19 +66,19 @@ const styles = {
   },
   userInfo: {
     display: 'flex',
-    minWidth: '240px',
+    // minWidth: '155px',
     alignItems: 'center',
     gap: '14px',
     justifyContent: 'end',
     flex: 1
   },
   userDetails: {
-    display: 'flex',
+    // display: 'flex',
     flexDirection: 'column',
     flex: 1
   },
   badges: {
-    display: 'flex',
+    // display: 'flex',
     alignItems: 'center',
     justifyContent: 'end',
     gap: '4px',
@@ -123,8 +123,13 @@ const styles = {
 export const MemberCard = ({ member,verified,refused}) => {
   const [isVisable , setIsVesabile] = useState(false);
   const [rejectPop , setrejectPop] = useState(false);
-  const formatDate = (isoString) => {
-    return isoString.split("T")[0];
+  const formatTimestamp = (timestamp) => {
+    if (!timestamp) return 'N/A';
+    if (timestamp.seconds && timestamp.nanoseconds) {
+      const date = new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000);
+      return date.toLocaleDateString().split("T")[0]; // Customize the format as needed
+    }
+    return timestamp;
   };
 
   const popout = () => {
@@ -146,35 +151,35 @@ export const MemberCard = ({ member,verified,refused}) => {
       {isVisable && <PopOut rejection= {rejectpopout} close={popout} member = {member} verified={verified} refused={refused}/>}
       {rejectPop && <MembershipRejection close={rejectpopout} rejection= {rejectpopout} member = {member} verified={verified} />}
       
-      <div style={{...styles.infoContainer, ...styles.datePhone}}>
+      <div  className="hide" style={{...styles.infoContainer, ...styles.datePhone}}>
         <span style={styles.label}>تاريخ الإنضمام</span>
-        {/* <span style={styles.value}>{formatDate(member.updatedAt)}</span> */}
+        <span style={styles.value}>{formatTimestamp(member.createdAt)}</span>
       </div>
-      <div style={{...styles.infoContainer, ...styles.datePhone}}>
+      <div className="hide" style={{...styles.infoContainer, ...styles.datePhone}}>
         <span style={styles.label}>رقم الجوال</span>
-        <span style={styles.value}>{member.phone}</span>
+        <span style={styles.value}>{member.phone ||"empty"}</span>
       </div>
-      <div style={{...styles.infoContainer, ...styles.email}}>
+      <div className="hide" style={{...styles.infoContainer, ...styles.email}}>
         <span style={styles.label}>البريد الإلكتروني</span>
-        <span style={styles.value}>{member.email}</span>
+        <span style={styles.value}>{member.email||"empty"}</span>
       </div>
-      <div style={styles.userInfo}>
-        <div style={styles.userDetails}>
+      <div style={styles.userInfo} className="userinfo">
+        <div style={styles.userDetails} >
         {member.status==="approved" ?        
-              <div style={styles.badges}>
+              <div style={styles.badges} className="hide">
                 <span style={styles.verificationBadgeSuccss}>مالك  موثق</span>
                 <span style={styles.statusBadge}>عضو جديد</span>
               </div> 
             : 
-               <div style={styles.badges}>
+               <div style={styles.badges} className="hide">
                 <span style={styles.verificationBadge}>مالك غير موثق</span>
                 <span style={styles.statusBadge}>عضو جديد</span>
               </div> 
           
           }
    
-          <h3 style={styles.userName}>{member.name}</h3>
-        </div>{member.imageSrc ?  <img src={member.imageSrc} style={styles.profileImage} />: <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/988b9681971b56ea8f73884c35050ffaa7c50503f852720e20ccedd472bbd8e9?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6" style={styles.profileImage} />}
+          <h3 style={styles.userName}>{member.name ||"empty"}</h3>
+        </div>{member.img ?  <img src={member.img} style={styles.profileImage} />: <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/988b9681971b56ea8f73884c35050ffaa7c50503f852720e20ccedd472bbd8e9?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6" style={styles.profileImage} />}
 
         
        

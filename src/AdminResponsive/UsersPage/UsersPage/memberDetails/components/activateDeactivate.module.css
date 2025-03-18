@@ -16,7 +16,10 @@
   
   @media (max-width: 991px) {
     .activationContainer {
-      padding: 0 20px;
+      padding:  20px;
+      display: flex
+;
+    flex-direction: column-reverse;
     }
   }
   
@@ -46,10 +49,10 @@
   
   @media (max-width: 991px) {
     .activateButton {
-      padding: 0 20px;
+      padding: 10px 20px;
     }
     .deactivateButton{
-      padding: 0 20px;
+      padding:10px  20px;
 
     }
   }

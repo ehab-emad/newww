@@ -24,6 +24,7 @@ import {
     changeTicketstatus,
     updateeticket,
     updateProduct,
+    countProductsByUserId,
     // Import the new function
 
 
@@ -445,6 +446,19 @@ export const PendingProducts = createAsyncThunk(
         }
     }
 );
+export const countProductsByUserIdAdmin = createAsyncThunk(
+    'products/countProductsByUserIdAdmin',
+    async (sellerid, { rejectWithValue }) => {
+        try {
+            const count_Products = await countProductsByUserId(sellerid); // Use the imported function
+            console.log('count_Products', count_Products);
+            return { count_Products }; // Return the data directly
+        } catch (error) {
+            console.error('Error count_Products:', error);
+            return rejectWithValue(error.message);
+        }
+    }
+);
 //productpendingAdmin
 export const PendingProductsAdmin = createAsyncThunk(
     'products/PendingProductsAdmin',
@@ -547,6 +561,7 @@ const initialState = {
     productby_Id:[],
     Allsellerss:[],
     published_rentedfalse:[],
+    count_Products:[],
     Product_added:[],
     delete_Seller:[],
     add_employee:[],
@@ -590,6 +605,21 @@ export const sellerPrdouctsReducer = createSlice({
                 state.published_true = action.payload.published_true; // Correctly store orders
             })
             .addCase(PublishedTrue.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+                state.success = false;
+            })
+            .addCase(countProductsByUserIdAdmin.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.success = false;
+            })
+            .addCase(countProductsByUserIdAdmin.fulfilled, (state, action) => {
+                state.loading = false;
+                state.success = true;
+                state.count_Products = action.payload.count_Products; // Correctly store orders
+            })
+            .addCase(countProductsByUserIdAdmin.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
                 state.success = false;

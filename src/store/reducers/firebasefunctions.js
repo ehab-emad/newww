@@ -1,6 +1,6 @@
 // Import Firebase services
 import { firestore } from '../firebaseConfig'; // Adjust the import path as needed
-import { collection, getDocs,getDoc,addDoc, deleteDoc ,query, orderBy, limit , where,doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { collection, getDocs,getDoc,addDoc, deleteDoc ,query, orderBy, limit , where,doc, updateDoc, arrayUnion, getCountFromServer } from 'firebase/firestore';
 import axios from 'axios'; // Import axios
 
 
@@ -1364,7 +1364,7 @@ export const deleteProduct = async (id) => {
         console.log("deleted")
         const productQuery = query(
             collection(firestore, "products"),
-            where("productid", "==", id)
+            where("id", "==", id)
 
         );
 
@@ -1540,4 +1540,23 @@ export async function addEmployee(employeeData) {
         throw error;
     }
   
+  };
+  export const countProductsByUserId = async (sellerid) => {
+    try {
+      // Reference the 'products' collection
+      const productsRef = collection(firestore, 'products');
+  
+      // Create a query to filter products by userId
+      const q = query(productsRef, where('sellerid', '==', sellerid));
+  
+      // Execute the query and get the count
+      const snapshot = await getCountFromServer(q);
+      const count = snapshot.data().count;
+  
+    //   console.log(Number of products for sellerid "${sellerid}":, count);
+      return count; // Return the count of products
+    } catch (error) {
+      console.error('Error counting products by sellerid:', error);
+      throw error; // Re-throw the error to handle it in the calling code
+    }
   };

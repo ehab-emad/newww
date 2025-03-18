@@ -13,6 +13,7 @@ const styles = {
       fontFamily: 'Expo Arabic, sans-serif',
       position: 'fixed',
       top: 0,
+      zIndex:100,
       left: 0,
       width: '100vw',
       height: '100vh',

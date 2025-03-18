@@ -59,7 +59,7 @@ const Settings = () => {
       fontWeight: '600',
       whiteSpace: 'nowrap',
       textAlign: 'center',
-      padding: '16px 24px',
+      padding: '9px ',
       cursor: 'pointer',
     },
     titleWrapper: {

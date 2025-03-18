@@ -118,9 +118,9 @@ const RejectOrderPopCard = ({setDeletProduct,deleteProduct ,type,product }) => {
   }
 const dispatch=useDispatch()
 
-  const handleConfirm=() => {
+  const handleConfirm=async() => {
 
-    dispatch(DeleteproductAdmin(product.productid))
+   await dispatch(DeleteproductAdmin(product.id))
     setDeletProduct(false)
   }
 

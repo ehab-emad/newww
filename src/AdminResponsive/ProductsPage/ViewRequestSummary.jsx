@@ -28,7 +28,7 @@ const styles = {
         flexDirection: 'column',
         height: 'auto',
         overflow : 'hidden',
-        width: '80%', // Full width of the parent
+        width: '84%', // Full width of the parent
         backgroundColor: '#e0e0e0', // Main background color
         padding: '24px', // Optional padding
         flexShrink: 0, // Prevent shrinking in flex container

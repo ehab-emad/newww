@@ -111,7 +111,7 @@ const styles = {
   customerName: {
     width: "20%",
     textAlign: "center",
-display:"flex",
+// display:"flex",
 justifyContent:"center"
 
   },
@@ -207,9 +207,9 @@ function RequestDetails({data,onReviewClick , addOrderToAnotherList,deleteOrderB
 
           <div className='hide' style={styles.customerName}>{order.recentUpdate ||'empty'}</div>
           <div className='hide'  style={styles.customerName}>{order.price ||0}</div>
-          <div  style={styles.customerName}>{order.sellername ||'empty'}</div>
+          <div className='hide'  style={styles.customerName}>{order.sellername ||'empty'}</div>
      
-          <div className='hide' style={styles.customerName}>{order.brand ||'empty'}</div>
+          <div className='hide'  style={styles.customerName}>{order.brand ||'empty'}</div>
           <div  style={styles.requestName}>{order.name ||'empty'}</div>
           <div style={styles.customerName}><img style={styles.productImage} src={order.img ||"https://cdn.builder.io/api/v1/image/assets/TEMP/eea2576816ccc8b8ac2413c28ee8ce1beb4253d0a89b5307356da91e91a4405a?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"}/></div>
         </div>

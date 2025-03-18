@@ -57,7 +57,7 @@ export const EmployeesCard = ({user , removeUser,Changeactive  , ChangeStatus}) 
           textAlign: ' center'
         },
         filtername: {
-          width : '27%',
+          width : '43%',
           background: 'transparent',
           textAlign: ' center'
         },

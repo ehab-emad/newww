@@ -54,7 +54,7 @@ export const UserCard = ({user , removeUser  , toggleUserVerified , toggleUserSt
       }
       ,
       filtername: {
-        width : '41%',
+        width : '47%',
         background: 'transparent',
         textAlign: ' center'
       },

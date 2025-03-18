@@ -399,7 +399,7 @@ const styles = {
           </div>
           <img 
             loading="lazy" 
-            src={request.imageUrl || "https://cdn.builder.io/api/v1/image/assets/TEMP/eea2576816ccc8b8ac2413c28ee8ce1beb4253d0a89b5307356da91e91a4405a?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"} 
+            src={request.img || "https://cdn.builder.io/api/v1/image/assets/TEMP/eea2576816ccc8b8ac2413c28ee8ce1beb4253d0a89b5307356da91e91a4405a?placeholderIfAbsent=true&apiKey=2e2b2f636cc34221b980cbf747a16fe6"} 
             alt="Product thumbnail" 
             style={styles.productImage} 
           />

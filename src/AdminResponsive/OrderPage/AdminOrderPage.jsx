@@ -9,10 +9,13 @@ import RequestDetails from './RequestDetails'; // Replace with the correct path
 import { useDispatch, useSelector } from 'react-redux';
 import { ClosedOrders, getNewOrders, getRentedOrders, getSellerCancelledOrders, getSellerOrders } from '../../store/reducers/sellerOrdersReducer';
 import RequestDetails1 from './requsrDetail1';
+import { PendingProductsAdmin, UpdateProductAdmin } from '../../store/reducers/sellerProductsReducer';
 
 // Main AdminOrders Component
 const AdminOrdersPage = () => {
   // State placeholders
+    const { products_pendingAdmin } = useSelector((state) => state.seller_products);
+  
   const [activeTop, setActiveTop] = useState('كل الطلبات');
   const [activeFilterText, setActiveFilterText] = useState('');
   const [requestSearch, setRequestSearch] = useState('');
@@ -22,16 +25,10 @@ const dispatch=useDispatch()
 const allorderss=[...new_orders,...rented_orders]
 const order_Review=[...all_closedorders,...seller_CancelledOrders]
   useEffect(() => {
-       dispatch(getRentedOrders(userId));
-       dispatch(getSellerCancelledOrders());
-       dispatch(ClosedOrders());
-dispatch(getSellerOrders())
-dispatch(getNewOrders())
-     
- 
-     }, [dispatch]);
+     dispatch(PendingProductsAdmin());
+   }, [dispatch]);
   const [RequestsTopFilter, setRequestsTopFilter] = useState([
-    { text: 'سجل الطلبات', isActive: false },
+   
     { text: 'كل الطلبات', isActive: true },
   ]);
   const [RequestRecord, setRequestRecord] = useState([
@@ -84,6 +81,30 @@ dispatch(getNewOrders())
     setAllRequest(updatedButtons);
     setActiveFilterText(updatedButtons[index].text);
   };
+  const [ReviewOrder, setReviewOrder] = useState(false);
+
+  const onReviewClick = (e) => {
+    // Delay the state change to ensure it does not happen during rendering
+    setReviewOrder(prevState => !prevState); // Toggle the review state
+  };
+
+
+  const addOrderToAnotherList = async (id) => {
+    const user = products_pendingAdmin.find(user => user.id === id.id); 
+    if (!user) return products_pendingAdmin;
+
+    const productData = { ...user, status: 'approved' }; 
+    await dispatch(UpdateProductAdmin({ id: id.id, productData }));
+    await dispatch(PendingProductsAdmin());
+  };
+  const deleteOrderById = async (id) => {
+    const user = products_pendingAdmin.find(user => user.id === id.id); 
+    if (!user) return products_pendingAdmin;
+
+    const productData = { ...user, status: 'rejected' }; 
+    await dispatch(UpdateProductAdmin({ id: id.id, productData }));
+    await dispatch(PendingProductsAdmin());
+  };
 
   // useEffect to update activeFilterText
   useEffect(() => {
@@ -110,29 +131,20 @@ dispatch(getNewOrders())
         FilterType={RequestsTopFilter}
       />
       <div style={group}>
-        {activeTop === 'سجل الطلبات' ? (
-          <ProductListingFilter
-            handlebuttonclick={handleRequestRecord}
-            filterbuttons={RequestRecord}
-            title="قائمة الطلبات"
-          />
-        ) : (
-          <ProductListingFilter
+       
+          {/* <ProductListingFilter
             handlebuttonclick={handleAllRequest}
             filterbuttons={AllRequest}
             title="قائمة الطلبات"
-          />
-        )}
+          /> */}
+     
         <SearchBar setSearch={setRequestSearch} />
         
         <HeaderRequest  />
-          {activeTop === 'سجل الطلبات' ? 
-                (
-                  <RequestDetails1  activeFilterText={activeFilterText} data={order_Review}/>
-                ) 
-                : (
-                  <RequestDetails  activeFilterText={activeFilterText} data={allorderss}/>)
-                }
+        
+                  <RequestDetails   addOrderToAnotherList={addOrderToAnotherList} 
+              deleteOrderById={deleteOrderById} ReviewOrder={ReviewOrder}    data={products_pendingAdmin}    onReviewClick={onReviewClick} />
+              {console.log(products_pendingAdmin)}  
       </div>
     </div>
   );

@@ -28,6 +28,8 @@ const ReplyInput = styled.textarea`
   width: 100%;
   min-height: 80px;
   padding: 12px;
+  direction: rtl !important;
+
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;

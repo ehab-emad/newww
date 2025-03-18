@@ -113,7 +113,7 @@ useEffect(()=>{
   const [openProducts, setOpenProducts] = useState({});
 
   const getVerificationBadgeClass = () => {
-    return user.isVerified ? styles.badgeVerified : styles.badgeUnverified;
+    return user.status==="approved" ? styles.badgeVerified : styles.badgeUnverified;
   };
 
   const getVerificationText = () => {
@@ -166,7 +166,7 @@ const   actionsicons= [
       <div className={styles.userInfo} style={styless.filtername}>
         <div className={styles.userDetails}>
           <div className={styles.badges}>
-            <div className={getVerificationBadgeClass()}>
+            <div className={user.status==="suspended" || user.status==="rejected" ? <div style={{display:"none"}}></div> :user.status==="approved" ? getVerificationBadgeClass(): getVerificationBadgeClass()}>
               {getVerificationText()}
             </div>
             {user.status == "suspended" ? <div className={styles.badgeSuspended}>عضو موقوف</div> : user.status == "rejected"  ? <div className={styles.badgeSuspended}>عضو  مرفوض</div> : <div style={{display:"none"}}></div>}
@@ -215,7 +215,7 @@ const   actionsicons= [
       <div className={styles.userInfo} style={styless.filtername}>
         <div className={styles.userDetails}>
           <div className={styles.badges}>
-            <div className={getVerificationBadgeClass()}>
+          <div className={user.status==="suspended" || user.status==="rejected" ? <div style={{display:"none"}}></div> :user.status==="approved" ? getVerificationBadgeClass(): getVerificationBadgeClass()}>
               {getVerificationText()}
             </div>
             {user.status == "suspended" ? <div className={styles.badgeSuspended}>عضو موقوف</div> : user.status == "rejected"  ? <div className={styles.badgeSuspended}>عضو  مرفوض</div> : <div style={{display:"none"}}></div>}

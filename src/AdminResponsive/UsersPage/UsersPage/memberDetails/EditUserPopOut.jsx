@@ -4,6 +4,7 @@ import IdentitySection from './components/IdentitySection';
 import MembershipSection from './components/MembershipSection';
 import AccountDetailsSection from './components/AccountDetailsSection';
 import AccountActivation from './components/activateDeactivate';
+import MemberjobSection from "./components/memberjob";
 
 
 
@@ -33,8 +34,11 @@ const EditUserPopOut = ({close,user, Changeactive, toggleUserVerified , toggleUs
       <div style={{display:"flex",flexWrap:"wrap" ,gap:"20px",width:"100%"}}>
 
         <div className={styles.content0}>
-          <IdentitySection user = {user} />
-          <MembershipSection member = {user}/>
+          <IdentitySection user = {user} />{
+            user.hasOwnProperty("role")?
+            <MemberjobSection member = {user}/>: <MembershipSection member = {user}/>
+          }
+         
         </div>
         
         <AccountDetailsSection user = {user} />
